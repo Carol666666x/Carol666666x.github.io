@@ -1630,7 +1630,8 @@
   </div>
 
   <!-- Turntable BGM Player (bottom-right) -->
-  <div id="turntable" class="fixed bottom-5 right-5 z-[45] select-none">
+  <div id="turntable" class="fixed bottom-5 right-5 z-[45] select-none flex flex-col items-end gap-2">
+    <div id="tt-hint" class="hidden bg-sheet border rule px-3 py-2 font-mono text-[10px] accent-red tracking-wider canvas-subtle-hint cursor-pointer">♪ 轻触任意处开启声音</div>
     <button id="tt-mini" onclick="setTurntableSize(true)" title="展开唱片机" class="hidden w-14 h-14 p-0 border-0 bg-transparent cursor-pointer">
       <div class="tt-disc w-full h-full">
         <div class="tt-label">WH</div>
@@ -1788,6 +1789,7 @@
       document.getElementById('tt-status').textContent = playing
         ? (bgm.muted ? '静音旋转 · 轻触页面开声 ♪' : 'SPINNING · SIDE A')
         : 'PAUSED · 已停针';
+      if (playing && !bgm.muted) document.getElementById('tt-hint').classList.add('hidden');
     }
 
     function toggleTurntable() {
@@ -1807,6 +1809,7 @@
       bgm.muted = false;
       bgm.volume = v / 100;
       document.getElementById('tt-vol-val').textContent = `${v}%`;
+      ttSync();
     }
 
     let ttSeeking = false;
@@ -1856,6 +1859,7 @@
           window.removeEventListener('keydown', start);
           bgm.muted = false;
           if (!ttUserPaused && bgm.paused) bgm.play().catch(() => {});
+          ttSync();
         };
         window.addEventListener('pointerdown', start);
         window.addEventListener('keydown', start);
@@ -1879,6 +1883,13 @@
           }, 150);
         }).catch(armGesture);
       });
+
+      // Invisible fallback by default; surface a gentle hint only if still silent after 3s
+      setTimeout(() => {
+        if (!ttUserPaused && (bgm.paused || bgm.muted)) {
+          document.getElementById('tt-hint').classList.remove('hidden');
+        }
+      }, 3000);
     }
 
     // =========================================================================
@@ -2745,14 +2756,24 @@
               item.style.transitionDelay = `${idx * 95}ms`;
             });
             playTypeLinesInSection(sec);
-            if (sec.id === 'sec-05') {
-              playTangPoem(false);
-            }
           }
         });
       }, { threshold: 0.14 });
 
       document.querySelectorAll('.reveal-block').forEach(sec => observer.observe(sec));
+
+      // Poem & night shift wait until the section fills at least half the screen
+      const poemSec = document.getElementById('sec-05');
+      const poemObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          const screenCoverage = entry.intersectionRect.height / window.innerHeight;
+          if (screenCoverage >= 0.5 || entry.intersectionRatio >= 0.6) {
+            playTangPoem(false);
+            poemObserver.disconnect();
+          }
+        });
+      }, { threshold: Array.from({ length: 21 }, (_, i) => i / 20) });
+      poemObserver.observe(poemSec);
 
       // Global Shortcuts: 1-4 Emotion, M Sound, ESC Modal
       window.addEventListener('keydown', e => {
