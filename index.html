@@ -1,0 +1,2772 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-lamp="1" data-lang="both">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>熊茂君 · MaoJun Xiong — 十八岁 · 成都 · DEMO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    // Early image fallback handler defined before body parsing to prevent ReferenceError
+    window.handleMissingPhoto = function (imgEl, code, title, filePath) {
+      if (!imgEl || !imgEl.parentElement) return;
+      const container = imgEl.parentElement;
+      container.innerHTML = `
+        <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center select-none" style="background: var(--bg-tint); color: var(--ink-sec);">
+          <div class="font-mono text-[10px] tracking-[0.2em] uppercase mb-2" style="color: var(--accent-vermilion);">${code}</div>
+          <div class="font-serifZh text-sm sm:text-base mb-1.5" style="color: var(--ink);">${title}</div>
+          <div class="font-mono text-[10px] tracking-wider" style="color: var(--ink-mut);">[${filePath} · 照片待补]</div>
+        </div>
+      `;
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-paper: #F6F5F1;
+      --bg-tint: #EFEDE7;
+      --bg-sheet: #FBFBF9;
+      --ink: #141413;
+      --ink-sec: #575550;
+      --ink-mut: #918E87;
+      --rule: rgba(20, 20, 19, 0.08);
+      --rule-strong: rgba(20, 20, 19, 0.68);
+      --accent-vermilion: #B83A2D;
+      --accent-lake: #1E4654;
+      --ease-silk: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-breath: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    /* 4-Stage "02:00 AM Lamp" Dimmer — Smooth Filament Cooling */
+    html[data-lamp="2"] {
+      --bg-paper: #ECEAE3;
+      --bg-tint: #E2DFD6;
+      --bg-sheet: #F3F1EB;
+      --ink: #1A1918;
+      --ink-sec: #54524C;
+      --ink-mut: #8A877F;
+      --rule: rgba(26, 25, 24, 0.09);
+      --rule-strong: rgba(26, 25, 24, 0.65);
+    }
+    html[data-lamp="3"] {
+      --bg-paper: #202225;
+      --bg-tint: #272A2E;
+      --bg-sheet: #191B1E;
+      --ink: #E5E3DD;
+      --ink-sec: #A19F99;
+      --ink-mut: #6F6E6A;
+      --rule: rgba(229, 227, 221, 0.09);
+      --rule-strong: rgba(229, 227, 221, 0.6);
+      --accent-vermilion: #D95B4E;
+      --accent-lake: #6DA3B5;
+    }
+    html[data-lamp="4"] {
+      --bg-paper: #0F1012;
+      --bg-tint: #15171A;
+      --bg-sheet: #121316;
+      --ink: #D8D6D0;
+      --ink-sec: #8B8984;
+      --ink-mut: #5A5955;
+      --rule: rgba(216, 214, 208, 0.08);
+      --rule-strong: rgba(216, 214, 208, 0.55);
+      --accent-vermilion: #E06458;
+      --accent-lake: #7BB4C7;
+    }
+
+    * {
+      border-radius: 0px !important;
+      box-shadow: none !important;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-paper);
+      color: var(--ink);
+      transition: background-color 1.15s var(--ease-breath), color 1.15s var(--ease-breath);
+    }
+
+    body {
+      background-color: var(--bg-paper);
+      color: var(--ink);
+      font-family: 'Inter', 'Noto Serif SC', sans-serif;
+      overflow-x: hidden;
+      transition: background-color 1.15s var(--ease-breath), color 1.15s var(--ease-breath);
+    }
+
+    /* Smooth surface & color transitions without overriding reveal transform/opacity */
+    header, section, article, figure, div, button, a, p, span, h1, h2, h3, blockquote, footer {
+      transition:
+        background-color 0.9s var(--ease-breath),
+        color 0.9s var(--ease-breath),
+        border-color 0.9s var(--ease-breath);
+    }
+
+    /* Bilingual Visibility Controls with gentle dissolve */
+    @keyframes langDissolveIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+        filter: blur(2px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+    html.is-lang-switching .lang-zh,
+    html.is-lang-switching .lang-en {
+      animation: langDissolveIn 0.65s var(--ease-silk) forwards;
+    }
+    html[data-lang="zh"] .lang-en { display: none !important; }
+    html[data-lang="en"] .lang-zh { display: none !important; }
+
+    .rule { border-color: var(--rule); }
+    .rule-strong { border-color: var(--rule-strong); }
+    .bg-tint { background-color: var(--bg-tint); }
+    .bg-sheet { background-color: var(--bg-sheet); }
+    .text-sec { color: var(--ink-sec); }
+    .text-mut { color: var(--ink-mut); }
+    .accent-red { color: var(--accent-vermilion); }
+    .accent-lake { color: var(--accent-lake); }
+
+    .font-serifZh { font-family: 'Noto Serif SC', serif; }
+    .font-serifEn { font-family: 'Cormorant Garamond', Georgia, serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Ink-sweep underline hover */
+    .ink-sweep {
+      position: relative;
+      text-decoration: none;
+    }
+    .ink-sweep::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 1px;
+      background-color: var(--ink);
+      transform: scaleX(0);
+      transform-origin: right center;
+      transition: transform 0.6s var(--ease-silk);
+    }
+    .ink-sweep:hover::after {
+      transform: scaleX(1);
+      transform-origin: left center;
+    }
+
+    /* Soft editorial emergence on scroll (mist-clearing + staggered children) */
+    .reveal-block {
+      opacity: 0;
+      transform: translateY(22px);
+      filter: blur(4px);
+      transition:
+        opacity 1.25s var(--ease-silk),
+        transform 1.35s var(--ease-silk),
+        filter 1.25s var(--ease-silk);
+    }
+    .reveal-block.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Staggered emergence for inner paragraphs, plates, and cards */
+    .reveal-block .emerge-item {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(3px);
+      transition:
+        opacity 1.15s var(--ease-silk),
+        transform 1.25s var(--ease-silk),
+        filter 1.15s var(--ease-silk);
+    }
+    .reveal-block.is-visible .emerge-item {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* Hero initial gentle emergence */
+    @keyframes heroEmerge {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+    .hero-emerge-1 { animation: heroEmerge 1.2s var(--ease-silk) 0.05s both; }
+    .hero-emerge-2 { animation: heroEmerge 1.3s var(--ease-silk) 0.22s both; }
+    .hero-emerge-3 { animation: heroEmerge 1.35s var(--ease-silk) 0.38s both; }
+
+    /* Gentle cross-dissolve for dynamic text updates */
+    .text-swap {
+      transition:
+        opacity 0.45s var(--ease-silk),
+        transform 0.5s var(--ease-silk),
+        filter 0.45s var(--ease-silk);
+    }
+    .text-swap.is-updating {
+      opacity: 0;
+      transform: translateY(6px);
+      filter: blur(2px);
+    }
+
+    /* Custom Precision Scrollbar */
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--ink-mut); }
+
+    /* Architectural Range Slider (Friday Snowball) */
+    input[type="range"].arch-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 1px;
+      background: var(--rule-strong);
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"].arch-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 11px;
+      height: 18px;
+      background: var(--accent-vermilion);
+      cursor: ew-resize;
+      border: 0;
+      transition: transform 0.35s var(--ease-silk);
+    }
+    input[type="range"].arch-slider::-webkit-slider-thumb:hover {
+      transform: scaleY(1.2);
+    }
+    input[type="range"].arch-slider::-moz-range-thumb {
+      width: 11px;
+      height: 18px;
+      background: var(--accent-vermilion);
+      cursor: ew-resize;
+      border: 0;
+    }
+
+    /* Piano Key Mechanical Action */
+    .piano-key {
+      transition: background-color 0.28s var(--ease-silk), transform 0.22s var(--ease-silk), color 0.28s var(--ease-silk);
+    }
+    .piano-key:active, .piano-key.is-pressed {
+      transform: translateY(2px);
+      background-color: var(--ink) !important;
+      color: var(--bg-paper) !important;
+    }
+
+    /* Archival Specimen Image Frame */
+    .specimen-frame img {
+      transition: transform 1.2s var(--ease-silk), filter 1.2s var(--ease-silk);
+      filter: contrast(1.02) saturate(0.95);
+    }
+    .specimen-frame:hover img {
+      transform: scale(1.025);
+      filter: contrast(1.04) saturate(1.02);
+    }
+
+    /* Turntable BGM Player */
+    @keyframes ttSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .tt-disc {
+      border-radius: 50% !important;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.12), transparent 55%),
+        repeating-radial-gradient(circle at center, #1B1B1E 0 1.5px, #26262A 1.5px 3px);
+      position: relative;
+      animation: ttSpin 3.6s linear infinite;
+      animation-play-state: paused;
+    }
+    #turntable.is-playing .tt-disc {
+      animation-play-state: running;
+    }
+    .tt-label {
+      position: absolute;
+      inset: 31%;
+      border-radius: 50% !important;
+      background: var(--accent-vermilion);
+      color: #F6F5F1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.08em;
+    }
+    .tt-arm {
+      position: absolute;
+      top: -5px;
+      right: -7px;
+      width: 3px;
+      height: 52px;
+      background: var(--ink-sec);
+      transform-origin: top center;
+      transform: rotate(-30deg);
+      transition: transform 0.8s var(--ease-silk);
+      pointer-events: none;
+    }
+    .tt-arm::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -3.5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50% !important;
+      background: var(--ink);
+    }
+    .tt-arm::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -2.5px;
+      width: 8px;
+      height: 12px;
+      background: var(--accent-vermilion);
+    }
+    #turntable.is-playing .tt-arm {
+      transform: rotate(16deg);
+    }
+
+    /* Touch & Tablet Adaptation */
+    body {
+      -webkit-tap-highlight-color: transparent;
+    }
+    button, a, .stack-card, input[type="range"] {
+      touch-action: manipulation;
+    }
+    @media (hover: none) {
+      .arch-cursor, .arch-cursor-dot {
+        display: none !important;
+      }
+    }
+    @media (pointer: coarse) {
+      input[type="range"].arch-slider {
+        height: 28px;
+        background: linear-gradient(to bottom, transparent calc(50% - 0.5px), var(--rule-strong) calc(50% - 0.5px), var(--rule-strong) calc(50% + 0.5px), transparent calc(50% + 0.5px));
+      }
+      input[type="range"].arch-slider::-webkit-slider-thumb {
+        width: 18px;
+        height: 26px;
+      }
+      input[type="range"].arch-slider::-moz-range-thumb {
+        width: 18px;
+        height: 26px;
+      }
+      .lamp-btn, .lang-btn {
+        padding: 6px 10px;
+      }
+      .cat-btn, .axis-btn, .kw-btn {
+        padding: 8px 12px;
+      }
+    }
+
+    /* Apple-Triggered Saving Folio */
+    #folio-saving.folio-hidden {
+      display: none;
+    }
+    @keyframes folioRise {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #folio-saving:not(.folio-hidden) {
+      animation: folioRise 0.85s var(--ease-silk);
+    }
+
+    /* Apple-Style Stacked Photo Plates */
+    .photo-stack {
+      position: relative;
+    }
+    .stack-card {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      border-radius: 20px !important;
+      overflow: hidden;
+      transition: transform 0.75s var(--ease-silk), filter 0.75s var(--ease-silk);
+      will-change: transform;
+    }
+    .stack-card.is-front {
+      transform: translate(0, 0) scale(1);
+      z-index: 2;
+      filter: brightness(1);
+    }
+    .stack-card.is-front:active {
+      transform: translate(0, 0) scale(0.985);
+    }
+    .stack-card.is-back {
+      transform: translate(30px, -26px) scale(0.95);
+      z-index: 1;
+      filter: brightness(0.85);
+    }
+
+    /* 3D Perspective Folio Cards & Paper Sheen */
+    .tilt-stage {
+      perspective: 1100px;
+    }
+    .tilt-card {
+      position: relative;
+      transform-style: preserve-3d;
+      transition:
+        transform 0.55s var(--ease-silk),
+        border-color 0.55s var(--ease-silk),
+        background-color 0.9s var(--ease-breath);
+      will-change: transform;
+    }
+    .tilt-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(
+        circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255, 255, 255, 0.16),
+        transparent 62%
+      );
+      transition: opacity 0.45s var(--ease-silk);
+    }
+    .tilt-card.is-tilting::after {
+      opacity: 1;
+    }
+
+    /* Context-Aware Architectural Cursor & Click Ripple */
+    .arch-cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 24px;
+      height: 24px;
+      border: 1px solid var(--ink);
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition:
+        width 0.35s var(--ease-silk),
+        height 0.35s var(--ease-silk),
+        border-color 0.35s var(--ease-silk),
+        background-color 0.35s var(--ease-silk),
+        opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .arch-cursor-dot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      background-color: var(--accent-vermilion);
+      pointer-events: none;
+      z-index: 10000;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s var(--ease-silk), opacity 0.3s ease;
+    }
+    .arch-cursor-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8px;
+      letter-spacing: 0.14em;
+      color: var(--ink);
+      opacity: 0;
+      white-space: nowrap;
+      transition: opacity 0.25s ease;
+    }
+    .arch-cursor.state-link {
+      width: 14px;
+      height: 14px;
+      border-color: var(--accent-vermilion);
+      background-color: rgba(184, 58, 45, 0.08);
+    }
+    .arch-cursor.state-view {
+      width: 54px;
+      height: 24px;
+      border-color: var(--accent-vermilion);
+      background-color: var(--bg-paper);
+    }
+    .arch-cursor.state-view .arch-cursor-tag {
+      opacity: 1;
+      color: var(--accent-vermilion);
+    }
+    .arch-cursor.state-sound {
+      width: 48px;
+      height: 22px;
+      border-style: dashed;
+      border-color: var(--accent-lake);
+      background-color: var(--bg-paper);
+    }
+    .arch-cursor.state-sound .arch-cursor-tag {
+      opacity: 1;
+      color: var(--accent-lake);
+    }
+    .arch-cursor.state-card {
+      width: 64px;
+      height: 22px;
+      border-color: var(--ink-sec);
+      background-color: var(--bg-paper);
+    }
+    .arch-cursor.state-card .arch-cursor-tag {
+      opacity: 1;
+    }
+
+    @keyframes clickRippleExpand {
+      0% {
+        width: 8px;
+        height: 8px;
+        opacity: 0.85;
+      }
+      100% {
+        width: 46px;
+        height: 46px;
+        opacity: 0;
+      }
+    }
+    .click-ink-ripple {
+      position: fixed;
+      border: 1px solid var(--accent-vermilion);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 9998;
+      animation: clickRippleExpand 0.65s var(--ease-silk) forwards;
+    }
+
+    /* Character-by-Character Organic Typewriter */
+    .type-char {
+      opacity: 0;
+      filter: blur(2px);
+      transition: opacity 0.45s var(--ease-silk), filter 0.45s var(--ease-silk);
+    }
+    .type-char.is-typed {
+      opacity: 1;
+      filter: blur(0);
+    }
+    @keyframes cursorBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    .type-cursor {
+      display: inline-block;
+      width: 1px;
+      height: 0.95em;
+      background-color: var(--accent-vermilion);
+      margin-left: 3px;
+      vertical-align: -0.1em;
+      opacity: 0;
+    }
+    .type-cursor.is-active {
+      animation: cursorBlink 0.9s infinite;
+    }
+
+    /* Firework Highlight & Text-Burst Sparks */
+    .firework-word {
+      display: inline-block;
+      white-space: nowrap;
+      position: relative;
+      transition: color 0.8s var(--ease-silk), letter-spacing 0.8s var(--ease-silk);
+    }
+    .firework-word.is-ignited {
+      color: var(--accent-vermilion);
+      letter-spacing: 0.04em;
+    }
+    @keyframes textSparkFly {
+      0% {
+        opacity: 0.95;
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(0.2);
+      }
+    }
+    .text-burst-spark {
+      position: fixed;
+      width: 2px;
+      height: 8px;
+      background-color: var(--accent-vermilion);
+      pointer-events: none;
+      z-index: 9995;
+      transform-origin: center;
+      animation: textSparkFly 0.85s var(--ease-silk) forwards;
+    }
+
+    @keyframes subtleHintBreath {
+      0%, 100% { opacity: 0.34; }
+      50% { opacity: 0.68; }
+    }
+    .canvas-subtle-hint {
+      animation: subtleHintBreath 3.2s ease-in-out infinite;
+      transition: opacity 0.6s var(--ease-silk);
+    }
+
+    /* Poetry Revision Strike */
+    .poem-strike {
+      text-decoration: line-through;
+      text-decoration-color: var(--accent-vermilion);
+      opacity: 0.55;
+    }
+
+    /* Vertical Classical Poetry Layout */
+    .vertical-poem {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+    }
+
+    /* Equalizer Bars */
+    @keyframes eqPulse {
+      0%, 100% { transform: scaleY(0.25); }
+      50% { transform: scaleY(1); }
+    }
+    .eq-bar {
+      transform-origin: bottom;
+      animation: eqPulse 0.9s ease-in-out infinite;
+    }
+
+    /* Lit Star: faint breathing glow */
+    @keyframes starHaloBreath {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.85; }
+    }
+    .star-halo {
+      animation: starHaloBreath 3.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes starCoreTwinkle {
+      0%, 100% { opacity: 0.8; transform: scale(0.92); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    .star-core {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: starCoreTwinkle 3.2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    /* Seal Stamp Pulse */
+    @keyframes sealStamp {
+      0% { transform: scale(1.16) rotate(-4deg); }
+      60% { transform: scale(0.95) rotate(1deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+    .is-stamped {
+      animation: sealStamp 0.48s var(--ease-silk);
+    }
+
+    /* Midnight Drawer & Modal Curtain */
+    #midnight-drawer {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.85s var(--ease-silk), opacity 0.75s var(--ease-silk);
+    }
+    #midnight-drawer.is-revealed {
+      max-height: 220px;
+      opacity: 1;
+    }
+
+    #editorial-modal {
+      opacity: 0;
+      pointer-events: none;
+      backdrop-filter: blur(0px);
+      transition: opacity 0.55s var(--ease-silk), backdrop-filter 0.55s var(--ease-silk);
+    }
+    #editorial-modal.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      backdrop-filter: blur(4px);
+    }
+    #editorial-modal .modal-panel {
+      transform: translateY(16px) scale(0.985);
+      transition: transform 0.65s var(--ease-silk);
+    }
+    #editorial-modal.is-open .modal-panel {
+      transform: translateY(0) scale(1);
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#B83A2D] selection:text-white">
+  <!-- Context-Aware Architectural Cursor -->
+  <div id="custom-cursor" class="arch-cursor hidden sm:flex">
+    <span id="custom-cursor-tag" class="arch-cursor-tag"></span>
+  </div>
+  <div id="custom-cursor-dot" class="arch-cursor-dot hidden sm:block"></div>
+
+  <!-- Top Architectural Instrument Bar -->
+  <header class="sticky top-0 z-40 border-b rule" style="background-color: var(--bg-paper);">
+    <div id="reading-gauge" class="h-[2px] w-0 transition-all duration-150" style="background-color: var(--accent-vermilion);"></div>
+    <div class="max-w-6xl mx-auto px-5 sm:px-10 min-h-[3rem] py-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 font-mono text-[11px]">
+      <!-- Left: Chengdu Live Clock & Telemetry -->
+      <div class="flex items-center gap-3">
+        <button onclick="handleClockEasterEgg()" title="连点 3 次解锁深夜密档" class="inline-flex items-center gap-2 hover:opacity-80 cursor-pointer">
+          <span class="w-1.5 h-1.5" style="background-color: var(--accent-vermilion);"></span>
+          <span class="hidden sm:inline">CDU · UTC+8</span>
+          <span id="chengdu-clock" class="tabular-nums text-[var(--ink)]">02:00:00</span>
+        </button>
+        <span id="night-owl-flag" class="hidden accent-red tracking-widest">[02:00 NIGHT OWL]</span>
+        <span id="cursor-telemetry" class="hidden md:inline text-mut">X:000 Y:000</span>
+      </div>
+
+      <!-- Right: 4-Stage Emotion Dimmer + Language Toggle -->
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-1" role="group" aria-label="Mood & Emotion Dimmer">
+          <span class="hidden sm:inline text-mut mr-1">EMOTION</span>
+          <button onclick="setLampLevel(1)" data-lamp-btn="1" class="lamp-btn px-2 py-0.5 border rule transition-colors" title="晴昼 · Daylight">1</button>
+          <button onclick="setLampLevel(2)" data-lamp-btn="2" class="lamp-btn px-2 py-0.5 border rule transition-colors" title="微阴 · Overcast">2</button>
+          <button onclick="setLampLevel(3)" data-lamp-btn="3" class="lamp-btn px-2 py-0.5 border rule transition-colors" title="星河 · Starlight">3</button>
+          <button onclick="setLampLevel(4)" data-lamp-btn="4" class="lamp-btn px-2 py-0.5 border rule transition-colors" title="凌晨两点 · 2 AM">4</button>
+        </div>
+
+        <div class="flex items-center border rule" role="group" aria-label="Language Switcher">
+          <button onclick="setLangMode('both')" data-lang-btn="both" class="lang-btn px-2 py-0.5 transition-colors">双语</button>
+          <button onclick="setLangMode('zh')" data-lang-btn="zh" class="lang-btn px-2 py-0.5 transition-colors">中</button>
+          <button onclick="setLangMode('en')" data-lang-btn="en" class="lang-btn px-2 py-0.5 transition-colors">EN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Midnight 02:00 AM Secret Drawer -->
+    <div id="midnight-drawer" class="border-t rule bg-sheet">
+      <div class="max-w-6xl mx-auto px-5 sm:px-10 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="space-y-1">
+          <div class="font-mono text-[10px] accent-red tracking-widest">02:00 AM · NIGHT OWL ARCHIVE</div>
+          <p class="font-serifZh text-sm">两点。猫先睡着，我还在。房间的灯一格一格调暗，这事改不了。</p>
+        </div>
+        <button onclick="toggleMidnightDrawer(false)" class="font-mono text-[10px] px-2.5 py-1 border rule self-start sm:self-center hover:border-[var(--ink)]">
+          收起密档 [×]
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-5 sm:px-10 pb-24">
+    <!-- =======================================================================
+         HERO — 刊头 / MASTHEAD
+    ======================================================================== -->
+    <section class="pt-14 sm:pt-20 pb-16 sm:pb-24 border-b rule">
+      <div class="flex flex-wrap items-center justify-between gap-4 font-mono text-[10px] tracking-widest text-mut mb-10 hero-emerge-1">
+        <span>ARCHIVE NO. XMJ-18-CDU · PORTFOLIO FOLIO</span>
+        <span>CHENGDU, SICHUAN · 30.6586° N, 104.0648° E</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <!-- Left: Name, Seal Stamp & 3-Axis Frequency Bar -->
+        <div class="md:col-span-7 space-y-8 hero-emerge-2">
+          <div class="flex flex-wrap items-start justify-between gap-6">
+            <div class="space-y-3">
+              <div class="font-mono text-xs tracking-widest accent-red">十八岁 · 成都 / EIGHTEEN · CHENGDU</div>
+              <h1 class="font-serifZh text-4xl sm:text-6xl font-normal tracking-tight leading-none">
+                熊茂君
+              </h1>
+              <p class="font-serifEn italic text-2xl sm:text-3xl text-sec">
+                MaoJun Xiong
+              </p>
+            </div>
+
+            <!-- Interactive Vermilion Seal Stamp -->
+            <button onclick="stampSealPulse(this)" title="点击盖章" class="border border-[var(--accent-vermilion)] px-3.5 py-3 text-center select-none cursor-pointer shrink-0">
+              <div class="font-serifZh text-sm leading-tight tracking-widest accent-red font-medium">
+                熊茂<br>君印
+              </div>
+              <div class="font-mono text-[8px] tracking-widest text-mut mt-1.5 pt-1 border-t rule">
+                SEAL·18
+              </div>
+            </button>
+          </div>
+
+          <!-- 3-Axis Frequency Micro-Controller -->
+          <div class="border-t rule pt-5 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <span class="font-mono text-[10px] text-mut tracking-widest">AXIS 01–03 · 频段</span>
+              <div class="flex gap-1.5 font-mono text-[11px]">
+                <button onclick="cycleHeroAxis(0)" class="axis-btn px-2.5 py-1 border rule">01 · 猫</button>
+                <button onclick="cycleHeroAxis(1)" class="axis-btn px-2.5 py-1 border rule">02 · 账</button>
+                <button onclick="cycleHeroAxis(2)" class="axis-btn px-2.5 py-1 border rule">03 · 歌</button>
+              </div>
+            </div>
+            <p id="hero-axis-note" class="font-serifZh text-sm text-sec text-swap">
+              July 和苹果先睡着，我还在。
+            </p>
+          </div>
+        </div>
+
+        <!-- Right: Hesitant Drafting Epigraph Card -->
+        <div class="md:col-span-5 hero-emerge-3">
+          <div class="bg-sheet border rule p-6 sm:p-8 space-y-5">
+            <div class="flex items-center justify-between font-mono text-[10px] text-mut border-b rule pb-3">
+              <span id="epigraph-status" class="accent-red">SETTLED</span>
+              <button onclick="replayEpigraphDraft()" class="hover:text-[var(--ink)] underline underline-offset-4 cursor-pointer">
+                重看推敲 ↻
+              </button>
+            </div>
+
+            <div class="space-y-4 min-h-[112px]">
+              <p class="font-serifZh text-lg sm:text-xl leading-relaxed">
+                <span id="epigraph-zh-text">神秘，随性。有时候连我自己都看不透我自己。</span><span id="epigraph-zh-cursor" class="type-cursor"></span>
+              </p>
+              <p class="font-serifEn italic text-lg text-sec leading-relaxed">
+                <span id="epigraph-en-text">Mysterious, and loose with things. Sometimes I can't even read myself either.</span><span id="epigraph-en-cursor" class="type-cursor"></span>
+              </p>
+            </div>
+
+            <div class="pt-3 border-t rule flex flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] text-mut">
+              <a href="#sec-01" class="ink-sweep">01 关于我</a>
+              <a href="#sec-02" class="ink-sweep">02 奶牛猫</a>
+              <a href="#sec-03" class="ink-sweep">03 洞庭湖</a>
+              <a href="#sec-04" class="ink-sweep">04 星期五</a>
+              <a href="#sec-05" class="ink-sweep">05 星月夜</a>
+              <a href="#sec-06" class="ink-sweep">06 声音</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         01 — 关于我 / ABOUT
+    ======================================================================== -->
+    <section id="sec-01" class="py-16 sm:py-24 border-b rule reveal-block">
+      <!-- Top Manifesto Header matching screenshot layout -->
+      <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-14 emerge-item">
+        <div class="lg:flex-1 lg:pl-12 space-y-3">
+          <h2 class="lang-zh font-serifZh text-2xl sm:text-3xl md:text-[34px] font-normal leading-relaxed tracking-wide">
+            <span class="type-line" data-text="我不改，我是一簇独有的"></span><span id="firework-target" class="firework-word"><span class="type-line" data-text="花火"></span><span class="type-cursor"></span></span>
+          </h2>
+          <p class="lang-en font-serifEn italic text-base sm:text-lg text-sec">
+            I'm not changing it. I'm a cluster of fireworks all my own.
+          </p>
+        </div>
+
+        <!-- Right-aligned Folio Marginalia with right vertical rule -->
+        <div class="text-right space-y-1 border-r rule-strong pr-4 shrink-0 self-end lg:self-start">
+          <div class="font-mono text-xs tracking-widest accent-red">01 — 关于我</div>
+          <div class="font-serifEn italic text-sm text-sec">01 — About</div>
+          <div class="font-mono text-[10px] text-mut tracking-widest pt-1">FOLIO I · MANIFESTO</div>
+        </div>
+      </div>
+
+      <!-- Asymmetric 2-Column Interleaved Bilingual Stanzas -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b rule emerge-item">
+        <!-- Left Column (Stanzas 1 & 2) -->
+        <div class="lg:col-span-4 space-y-8">
+          <div class="space-y-2.5">
+            <p class="lang-zh font-serifZh text-[15px] leading-[1.95]">
+              我催自己自律，把日子理得齐整；<br>
+              遇心上喜欢，一首歌，可以反复听很久。
+            </p>
+            <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.7]">
+              I nudge myself to stay disciplined, keeping the days in order; for what my heart loves, one song can play on repeat for a long time.
+            </p>
+          </div>
+
+          <div class="space-y-2.5">
+            <p class="lang-zh font-serifZh text-[15px] leading-[1.95]">
+              那些云里的微尘，各自波动，看似无关，<br>
+              暗里自有一线牵。
+            </p>
+            <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.7]">
+              Those motes of dust in the clouds each ripple on their own, seemingly unrelated — yet in the dark, one thread pulls them together.
+            </p>
+          </div>
+        </div>
+
+        <!-- Right Column with Left Vertical Divider (Stanzas 3 & 4) -->
+        <div class="lg:col-span-8 space-y-8">
+          <div class="border-l rule-strong pl-6 space-y-2.5">
+            <p class="lang-zh font-serifZh text-[15px] leading-[1.95]">
+              江豚迟归，诗待经年才有人懂。<br>
+              <strong class="font-medium"><span class="type-line" data-text="万物缓缓，慢得恰好。"></span></strong>
+            </p>
+            <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.7]">
+              The porpoise returns late; a poem waits years before someone reads it. <strong class="font-normal text-[var(--ink)]">All things move slowly, slow just enough.</strong>
+            </p>
+          </div>
+
+          <div class="pl-6 space-y-2.5">
+            <p class="lang-zh font-serifZh text-[15px] leading-[1.95]">
+              我耐心等着路上那个我，<br>
+              任时光，慢慢酿成她。
+            </p>
+            <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.7]">
+              I wait patiently for the me still on the road, letting time slowly brew into her.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2-Column Editorial Specimens (Keyword Index + Firework Ink Canvas) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch pt-12 emerge-item">
+        <!-- Keyword Index Lens -->
+        <div class="lg:col-span-7 bg-sheet border rule p-6 sm:p-7 flex flex-col justify-between gap-6">
+          <div>
+            <div class="font-mono text-[10px] text-mut tracking-widest mb-4">INDEX · 关键词互动注释</div>
+            <div id="keyword-tabs" class="flex flex-wrap gap-2"></div>
+          </div>
+          <div id="keyword-note-panel" class="border-t rule pt-4 space-y-2 text-swap">
+            <div id="kw-title" class="font-mono text-xs accent-red"></div>
+            <p id="kw-zh" class="lang-zh font-serifZh text-sm sm:text-base leading-relaxed"></p>
+            <p id="kw-en" class="lang-en font-serifEn italic text-base text-sec leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- Firework Ink Canvas -->
+        <div class="lg:col-span-5 bg-sheet border rule relative min-h-[220px] flex flex-col justify-between" data-cursor="view" data-cursor-label="IGNITE">
+          <div class="px-4 py-2.5 border-b rule flex items-center justify-between font-mono text-[10px] text-mut z-10 pointer-events-none">
+            <span>FIG 01 · 独有的花火</span>
+            <span id="firework-count">SPARKS: 0</span>
+          </div>
+          <canvas id="firework-canvas" class="w-full h-44 block cursor-crosshair"></canvas>
+          <div id="firework-hint" class="canvas-subtle-hint pointer-events-none absolute inset-0 flex items-center justify-center font-mono text-[10px] tracking-[0.2em] text-mut pt-6">
+            轻触点燃 · CLICK
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         02 — 两只奶牛猫 / TWO TUXEDO CATS
+    ======================================================================== -->
+    <section id="sec-02" class="pt-16 sm:pt-24 pb-10 sm:pb-14 border-b rule reveal-block">
+      <!-- Top Full-Width Header -->
+      <div class="border-b rule pb-8 mb-12 emerge-item">
+        <div class="font-mono text-xs tracking-widest accent-red mb-3">02 — 两只奶牛猫 / TWO TUXEDO CATS</div>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div class="space-y-2">
+            <h2 class="lang-zh font-serifZh text-2xl sm:text-4xl font-normal leading-snug">
+              <span class="type-line" data-text="炎热，拥挤，命运在此按下一个"></span><span class="whitespace-nowrap"><span class="type-line" data-text="节点"></span><span class="type-cursor"></span></span>
+            </h2>
+            <p class="lang-en font-serifEn italic text-lg sm:text-xl text-sec">
+              Hot, crowded. Here, fate pressed down a turning point.
+            </p>
+          </div>
+          <div class="font-mono text-[10px] text-mut tracking-widest shrink-0">PLATES 02-A & 02-B · CHENGDU</div>
+        </div>
+      </div>
+
+      <!-- Upper Asymmetric Row: Left Staggered Contact Plates + Right Tuxedo Profiles & Folio 02.1 -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-10 emerge-item">
+        <!-- Left 7 Cols: Two Horizontally Staggered Plates -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 items-start">
+          <figure class="specimen-frame cursor-pointer" data-cursor="view" data-cursor-label="PLATE" onclick="openLightbox('mother.webp', 'PLATE 02-A · 2024 · 07', '猫妈妈 / The mother cat')">
+            <div class="aspect-[4/3] border rule bg-sheet overflow-hidden">
+              <img src="mother.webp" alt="猫妈妈" class="w-full h-full object-cover" onerror="handleMissingPhoto(this, 'PLATE 02-A', '2024 · 07 猫妈妈', 'mother.webp')">
+            </div>
+            <figcaption class="pt-2.5 flex items-center justify-between font-mono text-[11px] text-sec">
+              <span>2024 · 07 — 猫妈妈</span>
+              <span class="text-mut">查看 [+]</span>
+            </figcaption>
+          </figure>
+
+          <figure class="specimen-frame cursor-pointer sm:mt-10" data-cursor="view" data-cursor-label="PLATE" onclick="openLightbox('family.jpg', 'PLATE 02-B · 2026 · 11', '母女在一起 / Mother and daughter together')">
+            <div class="aspect-[4/3] border rule bg-sheet overflow-hidden">
+              <img src="family.jpg" alt="母女在一起" class="w-full h-full object-cover" onerror="handleMissingPhoto(this, 'PLATE 02-B', '2026 · 11 母女在一起', 'family.jpg')">
+            </div>
+            <figcaption class="pt-2.5 flex items-center justify-between font-mono text-[11px] text-sec">
+              <span>2026 · 11 — 母女在一起</span>
+              <span class="text-mut">查看 [+]</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Right 5 Cols: Tuxedo Profiles Switcher + FOLIO 02.1 -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="tilt-stage">
+            <div class="tilt-card bg-sheet border rule p-6 space-y-4" data-cursor="card" data-cursor-label="FOLIO 3D">
+              <div class="flex items-center justify-between gap-3 border-b rule pb-3">
+                <span class="font-mono text-[10px] text-mut tracking-widest">TUXEDO PROFILES</span>
+                <div class="flex gap-1.5 font-mono text-[11px]">
+                  <button onclick="selectCatProfile('july')" data-cat-btn="july" class="cat-btn px-2.5 py-1 border rule transition-colors">July</button>
+                  <button onclick="selectCatProfile('apple')" data-cat-btn="apple" class="cat-btn px-2.5 py-1 border rule transition-colors">苹果 · Apple</button>
+                </div>
+              </div>
+              <div id="cat-profile-body" class="space-y-2 text-swap">
+                <div class="flex items-center justify-between font-mono text-[11px]">
+                  <span id="cat-name" class="font-medium"></span>
+                  <span id="cat-tag" class="accent-red"></span>
+                </div>
+                <p id="cat-zh" class="lang-zh font-serifZh text-sm leading-relaxed"></p>
+                <p id="cat-en" class="lang-en font-serifEn italic text-sm text-sec leading-relaxed"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tilt-stage">
+            <article class="tilt-card bg-sheet border rule p-6 space-y-3" data-cursor="card" data-cursor-label="FOLIO 3D">
+              <div class="flex items-center justify-between font-mono text-[10px]">
+                <span class="accent-red">FOLIO 02.1 · CAGE</span>
+                <span class="text-mut">铁笼与生机</span>
+              </div>
+              <p class="lang-zh font-serifZh text-[15px] leading-[1.95]">
+                方寸之地，挤着八九条鲜活生命。它们化作交易里的筹码，我的心，同那铁笼一同颤栗。
+              </p>
+              <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.75]">
+                A space mere feet across, packed with eight or nine vivid lives. They became chips in a trade, and my heart shuddered along with that iron cage.
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lower Staggered 2-Column Folio Section (Lifted into the Gap Between Columns for Staggered Rhythm) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start emerge-item">
+        <div class="lg:col-span-6 lg:-mt-20 xl:-mt-28 flex flex-col sm:flex-row items-start sm:items-center gap-6 py-2">
+          <!-- Minimalist Geometric Tuxedo Cat SVG -->
+          <div class="shrink-0 w-24 sm:w-28 select-none group" title="苹果 · Apple">
+            <svg viewBox="0 0 120 110" class="w-full h-auto overflow-visible" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Subtle ground baseline -->
+              <line x1="10" y1="98" x2="110" y2="98" stroke="var(--rule-strong)" stroke-width="0.9" />
+              <!-- Gently curled tail -->
+              <path d="M 84 96 C 102 96, 108 78, 96 68 C 89 62, 83 70, 88 76" stroke="var(--ink)" stroke-width="1.2" fill="none" />
+              <!-- Seated cat body silhouette -->
+              <path d="M 38 98 L 42 54 L 74 54 L 84 98 Z" stroke="var(--ink)" stroke-width="1.2" fill="var(--bg-sheet)" />
+              <!-- Tuxedo black saddle patch on back -->
+              <path d="M 56 54 L 74 54 L 81 84 L 62 74 Z" fill="var(--ink)" opacity="0.88" />
+              <!-- Cat head & pointed ears -->
+              <path d="M 34 54 L 34 26 L 45 36 L 59 36 L 70 26 L 70 54 Z" stroke="var(--ink)" stroke-width="1.2" fill="var(--bg-sheet)" />
+              <!-- Tuxedo mask patches over ears/eyes -->
+              <path d="M 34 26 L 45 36 L 45 47 L 34 47 Z" fill="var(--ink)" />
+              <path d="M 70 26 L 59 36 L 59 47 L 70 47 Z" fill="var(--ink)" />
+              <!-- Eyes (one calm slit, one vermilion glint) -->
+              <line x1="39" y1="43" x2="43" y2="43" stroke="var(--bg-paper)" stroke-width="1.3" />
+              <line x1="61" y1="43" x2="65" y2="43" stroke="var(--bg-paper)" stroke-width="1.3" />
+              <!-- Tiny vermilion nose & whiskers -->
+              <rect x="51" y="48" width="2.5" height="2" fill="var(--accent-vermilion)" />
+              <line x1="22" y1="48" x2="32" y2="49" stroke="var(--ink-mut)" stroke-width="0.8" />
+              <line x1="22" y1="52" x2="32" y2="52" stroke="var(--ink-mut)" stroke-width="0.8" />
+              <line x1="72" y1="49" x2="82" y2="48" stroke="var(--ink-mut)" stroke-width="0.8" />
+              <line x1="72" y1="52" x2="82" y2="52" stroke="var(--ink-mut)" stroke-width="0.8" />
+            </svg>
+            <div class="font-mono text-[9px] tracking-widest text-mut mt-1.5 flex items-center justify-between">
+              <span>FIG 02 · APPLE</span>
+              <span class="accent-red">1 / 5</span>
+            </div>
+          </div>
+
+          <!-- Unboxed Editorial Marginalia Text -->
+          <div class="border-l-2 border-[var(--accent-vermilion)] pl-5 sm:pl-6 space-y-3">
+            <div class="flex items-center gap-3 font-mono text-[10px] tracking-widest">
+              <span class="accent-red">FOLIO 02.2 · APPLE STAYED</span>
+              <span class="text-mut">五取其一</span>
+            </div>
+            <p class="lang-zh font-serifZh text-[15px] sm:text-base leading-[1.95]">
+              那时我尚年少，不忍断它们生机。一窝添了五个小小的生灵，疫病袭来，我拼力护住四只，一只远去，“苹果”留了下来。
+            </p>
+            <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.75]">
+              I was still young then, and could not bear to end their line. The nest gained five tiny lives, then sickness struck — I fought with all I had to keep four alive, one slipped away; "Apple" stayed.
+            </p>
+          </div>
+        </div>
+
+        <div id="folio-saving" class="lg:col-span-5 lg:col-start-8 lg:mt-4 tilt-stage folio-hidden">
+          <article class="tilt-card bg-sheet border rule p-6 sm:p-7 space-y-3.5" data-cursor="card" data-cursor-label="FOLIO 3D">
+            <div class="font-mono text-[10px] accent-red">FOLIO 02.3 · MEANING OF SAVING</div>
+            <p class="lang-zh font-serifZh text-[15px] leading-[1.95]">
+              它命途多舛，疫病掠去后腿气力，幸而留住性命；其余的，被母猫携走。我向父母求助，他们百般为难。我眼睁睁看着生命在眼前流走，那一刻，才懂得<a href="#sec-04" class="border-b border-[var(--accent-vermilion)] accent-red font-medium px-0.5">积蓄</a>的意义。
+            </p>
+            <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.75]">
+              Her fate was rough — the illness took the strength of her back legs, yet spared her life; the rest were carried off by the mother cat. I turned to my parents for help; they put up every difficulty. I watched lives slip away before my own eyes, and in that moment, I learned what <a href="#sec-04" class="border-b border-[var(--accent-vermilion)] accent-red font-medium px-0.5">saving</a> means.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         03 — 水里的事 / SOMETHING IN THE WATER
+    ======================================================================== -->
+    <section id="sec-03" class="py-16 sm:py-24 border-b rule reveal-block">
+      <!-- Top Header matching screenshot: Left Coordinates, Right-Aligned Title -->
+      <div class="border-b rule pb-8 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 emerge-item">
+        <div class="font-mono text-[10px] text-mut tracking-widest order-2 md:order-1">
+          29.31°N 112.95°E · DONGTING LAKE FIELD LOG
+        </div>
+        <div class="md:text-right space-y-2 order-1 md:order-2">
+          <div class="font-mono text-xs tracking-widest accent-lake">03 — 水里的事 / SOMETHING IN THE WATER</div>
+          <h2 class="lang-zh font-serifZh text-2xl sm:text-4xl font-normal">
+            <span class="type-line" data-text="一开始，只是"></span><span class="whitespace-nowrap"><span class="type-line" data-text="好奇"></span><span class="type-cursor"></span></span>
+          </h2>
+          <p class="lang-en font-serifEn italic text-lg sm:text-xl text-sec">
+            At first, it was pure curiosity.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2-Column Fieldwork: Left Apple-Style Photo Stack + Right Instruments -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start mb-10 emerge-item">
+        <!-- Left: Stacked Plates (Drone in front, Dongting peeking at top-right) -->
+        <div class="md:col-span-7">
+          <div class="flex items-center justify-between font-mono text-[10px] text-mut tracking-widest mb-2 mr-8">
+            <span>FIELD PLATES · 点击照片切换</span>
+            <span id="stack-indicator" class="accent-lake">03-B · DRONE</span>
+          </div>
+          <div id="photo-stack" class="photo-stack aspect-[4/3] mt-7 mr-8" data-cursor="view" data-cursor-label="SHUFFLE">
+            <figure class="stack-card is-back border rule bg-sheet flex flex-col" data-plate="03-A · DONGTING" onclick="cyclePhotoStack()">
+              <div class="flex-1 overflow-hidden">
+                <img src="dongting.jpg" alt="洞庭湖的水面 / Dongting Lake" class="w-full h-full object-cover" onerror="handleMissingPhoto(this, 'PLATE 03-A', '洞庭湖的水面 / Dongting Lake', 'dongting.jpg')">
+              </div>
+              <figcaption class="px-4 py-2.5 border-t rule flex items-center justify-between gap-2 font-mono text-[10px] text-sec">
+                <span class="min-w-0 truncate">洞庭湖的水面<span class="hidden sm:inline"> / Dongting Lake</span></span>
+                <span class="text-mut shrink-0">PLATE 03-A</span>
+              </figcaption>
+            </figure>
+            <figure class="stack-card is-front border rule bg-sheet flex flex-col" data-plate="03-B · DRONE" onclick="cyclePhotoStack()">
+              <div class="flex-1 overflow-hidden">
+                <img src="drone.jpg" alt="我们自己装的无人机 / The drone we built" class="w-full h-full object-cover" onerror="handleMissingPhoto(this, 'PLATE 03-B', '我们自己装的无人机 / The drone we built', 'drone.jpg')">
+              </div>
+              <figcaption class="px-4 py-2.5 border-t rule flex items-center justify-between gap-2 font-mono text-[10px] text-sec">
+                <span class="min-w-0 truncate">我们自己装的无人机<span class="hidden sm:inline"> / The drone we built</span></span>
+                <span class="text-mut shrink-0">PLATE 03-B</span>
+              </figcaption>
+            </figure>
+          </div>
+          <p class="font-serifZh text-xs text-sec mt-4">叠放的两张底片：点一下，下面那张便覆上来。</p>
+        </div>
+
+        <!-- Right: Stacked Field Instruments -->
+        <div class="md:col-span-5 space-y-4 md:mt-8">
+          <!-- Card 1: Porpoise Breath Acoustic Meter -->
+          <div class="tilt-stage">
+            <div class="tilt-card bg-sheet border rule p-5 space-y-3" data-cursor="sound" data-cursor-label="BREATH">
+              <div class="flex items-center justify-between font-mono text-[10px]">
+                <span class="text-mut tracking-widest">PORPOISE BREATH</span>
+                <button id="porpoise-btn" onclick="triggerPorpoiseBreath()" class="accent-lake hover:opacity-80 cursor-pointer">听见呼吸 ♪</button>
+              </div>
+              <div class="border rule px-2.5 py-2.5 flex items-center gap-[3px] h-9" id="porpoise-wave">
+                <span class="flex-1 bg-current opacity-20 h-2 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-25 h-2.5 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-30 h-3 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-30 h-2.5 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-25 h-2 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1.5 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1.5 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1.5 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-25 h-2 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-30 h-2.5 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-35 h-3 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-35 h-3 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-30 h-2.5 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-25 h-2 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1.5 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1 transition-all duration-300"></span>
+                <span class="flex-1 bg-current opacity-20 h-1 transition-all duration-300"></span>
+              </div>
+              <p id="porpoise-status" class="font-serifZh text-xs text-sec leading-relaxed">
+                “我却第一次听见江豚的呼吸。”点击感受烟波里的换气声波。
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Custom Drone Altimeter -->
+          <div class="tilt-stage">
+            <div class="tilt-card bg-sheet border rule p-5 space-y-3" data-cursor="card" data-cursor-label="FOLIO 3D">
+              <div class="flex items-center justify-between font-mono text-[10px]">
+                <span class="text-mut tracking-widest">DRONE ALTITUDE</span>
+                <span id="drone-alt-val" class="accent-lake">45 M · 巡航</span>
+              </div>
+              <input type="range" min="10" max="120" value="45" class="arch-slider" oninput="updateDroneAltitude(this.value)">
+              <p id="drone-alt-note" class="font-serifZh text-xs text-sec leading-relaxed">
+                45米高度：风声变轻，能看清烟波里忽隐忽现的背鳍，又不至于惊扰它们。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom 2-Column 3D Field Logs -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch emerge-item">
+        <div class="lg:col-span-6 tilt-stage">
+          <article class="tilt-card h-full bg-sheet border rule p-6 sm:p-7 space-y-3.5" data-cursor="card" data-cursor-label="FOLIO 3D">
+            <div class="flex items-center justify-between font-mono text-[10px]">
+              <span class="text-mut">LOG 03.1 · FIRST BREATH</span>
+              <span class="accent-lake">烟波与航道</span>
+            </div>
+            <p class="lang-zh font-serifZh text-[15px] leading-[1.95]">
+              2025 年盛夏，我来到洞庭湖。湖面辽阔，风声很远，我却第一次听见江豚的呼吸。它们在烟波里忽隐忽现，不似传说，也不似梦境，只是一群真实而脆弱的生命。后来我才知道，湖里有江豚，也有渔船，有水位与航道的变化，有保护，也有冲突。
+            </p>
+            <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.75]">
+              In midsummer 2025, I came to Dongting Lake. The lake spread wide, the wind sounded far away, and for the first time, I heard a porpoise breathe. They flickered in and out of the mist — just a group of real, fragile lives.
+            </p>
+          </article>
+        </div>
+
+        <div class="lg:col-span-6 tilt-stage">
+          <article class="tilt-card h-full bg-sheet border rule p-6 sm:p-7 space-y-4" data-cursor="card" data-cursor-label="FOLIO 3D">
+            <div class="flex items-center justify-between font-mono text-[10px]">
+              <span class="text-mut">LOG 03.2 · GUARDING</span>
+              <span class="text-mut">日复一日地靠近</span>
+            </div>
+            <div class="border-l rule-strong pl-5 space-y-2">
+              <p class="lang-zh font-serifZh text-[15px] leading-[1.9]">
+                一个小小的渡口，装不下所有答案。<br>
+                但我开始懂得：守护不只是看见，更是日复一日地靠近。
+              </p>
+              <p class="lang-en font-serifEn italic text-sec text-[15px] leading-[1.7]">
+                Guarding is more than seeing — it is drawing near, day after day.
+              </p>
+            </div>
+            <p class="lang-zh font-serifZh text-[15px] leading-[1.95]">
+              我仍怕惊扰它们，也怕自己走得太慢。可有些路，必须一步步走去，有些爱，也必须在坚持里，慢慢长成力量。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         04 — 星期五 / FRIDAYS (Left Snowball Card + Right Header & 3D Folio Card)
+    ======================================================================== -->
+    <section id="sec-04" class="py-16 sm:py-24 border-b rule reveal-block">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <!-- Left 5 Cols: Friday Snowball Compounding Card -->
+        <div class="lg:col-span-5 lg:mt-14 emerge-item tilt-stage">
+          <div class="tilt-card bg-sheet border rule p-6 sm:p-7 space-y-6" data-cursor="card" data-cursor-label="FOLIO 3D">
+            <div class="flex items-center justify-between font-mono text-[10px]">
+              <span class="text-mut tracking-widest">FRIDAY SNOWBALL</span>
+              <span id="snowball-week-label" class="accent-red">156 WEEKS (3.0 YRS)</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <div class="font-mono text-[10px] text-mut mb-1">CUMULATIVE</div>
+                <div id="snowball-cum" class="font-mono text-2xl sm:text-3xl tracking-tight">¥ 8,822</div>
+              </div>
+              <div>
+                <div class="font-mono text-[10px] text-mut mb-1">TIME HORIZON</div>
+                <div id="snowball-yrs" class="font-serifZh text-2xl sm:text-3xl font-normal">3.0 年</div>
+              </div>
+            </div>
+
+            <!-- 24-Bar Exponential Snowball Curve -->
+            <div id="snowball-bars" class="h-16 flex items-end gap-1 pt-2 border-b rule pb-1"></div>
+
+            <div class="space-y-2.5">
+              <div class="flex items-center justify-between font-mono text-[10px] text-mut">
+                <span>周五定投刻度 · SCRUB WEEKS</span>
+                <span id="snowball-principal">本金 ¥7,800</span>
+              </div>
+              <input type="range" min="12" max="260" value="156" class="arch-slider" oninput="updateSnowballScale(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Right 7 Cols: Unboxed Header + 3D Editorial Narrative Card -->
+        <div class="lg:col-span-7 space-y-6 emerge-item">
+          <div class="space-y-2">
+            <div class="font-mono text-xs tracking-widest accent-red">04 — 星期五 / FRIDAYS</div>
+            <h2 class="lang-zh font-serifZh text-2xl sm:text-4xl font-normal">
+              <span class="type-line" data-text="每周五，日积"></span><span class="whitespace-nowrap"><span class="type-line" data-text="月累"></span><span class="type-cursor"></span></span>
+            </h2>
+            <p class="lang-en font-serifEn italic text-lg sm:text-xl text-sec">
+              Every Friday. Bit by bit.
+            </p>
+          </div>
+
+          <div class="tilt-stage">
+            <article class="tilt-card bg-sheet border rule p-6 sm:p-8 space-y-6" data-cursor="card" data-cursor-label="FOLIO 3D">
+              <div class="space-y-2">
+                <p class="lang-zh font-serifZh text-[15px] sm:text-base leading-[1.95]">
+                  每到周五，零钱悄悄扣去一点，无声无息，翻过一个又一个星期。
+                </p>
+                <p class="lang-en font-serifEn italic text-sec text-base leading-[1.75]">
+                  Every Friday, a little slips quietly out of my wallet, soundless, turning over one week after another.
+                </p>
+              </div>
+
+              <div class="space-y-2">
+                <p class="lang-zh font-serifZh text-[15px] sm:text-base leading-[1.95]">
+                  读巴菲特的信，最见耐心是等候。我也在等，等时光推着我慢慢成熟。
+                </p>
+                <p class="lang-en font-serifEn italic text-sec text-base leading-[1.75]">
+                  In Buffett's letters, patience shows most in the waiting. I am waiting too — letting time push me slowly toward maturity.
+                </p>
+              </div>
+
+              <div class="border-l rule-strong pl-5 space-y-2 pt-1">
+                <p class="lang-zh font-serifZh text-[15px] sm:text-base leading-[1.9]">
+                  <span class="type-line" data-text="金钱是滚动的雪球，一程复一程，越积越厚。"></span>
+                </p>
+                <p class="lang-en font-serifEn italic text-sec text-base leading-[1.7]">
+                  Money is a rolling snowball, league upon league, thicker and thicker.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         05 — 一个半小时 / NINETY MINUTES (Vertical Poem Flush Top Left + Right Content)
+    ======================================================================== -->
+    <section id="sec-05" class="py-16 sm:py-24 border-b rule reveal-block">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        <!-- Left 4 Cols: Unboxed Vertical Classical Poem Flush Top + Boat & Moon Ink Sketch -->
+        <div class="lg:col-span-4 space-y-6 emerge-item">
+          <div class="flex items-center justify-between font-mono text-[10px]">
+            <span class="accent-red tracking-widest">05 — 一个半小时</span>
+            <button onclick="replayTangPoem()" class="text-mut hover:text-[var(--ink)] underline underline-offset-4 cursor-pointer">重诵 ↻</button>
+          </div>
+
+          <!-- Vertical Classical Poem Directly on Paper (No Box Background, Flush Top) -->
+          <div class="flex justify-center py-2">
+            <div class="vertical-poem flex flex-col justify-between gap-5 min-h-[220px] select-none border-x rule px-6">
+              <div class="space-y-2 font-serifZh text-2xl sm:text-[26px] tracking-[0.22em] leading-relaxed">
+                <p id="tang-poem-l1">醉后不知天在水，</p>
+                <p id="tang-poem-l2">满船清梦压星河。</p>
+              </div>
+              <div id="tang-poem-author" class="font-serifZh text-xs text-sec tracking-[0.2em] self-end transition-opacity duration-700">
+                —— 唐珙 · 题龙阳县青草湖
+              </div>
+            </div>
+          </div>
+
+          <p class="lang-en font-serifEn italic text-sm text-sec leading-relaxed">
+            Drunk, unaware the sky lies in the water; a whole boatful of clear dreams presses upon the Milky Way.
+          </p>
+
+          <!-- Minimalist Ink Line-Art: Drifting Boat, Crescent Moon & Starry Water -->
+          <div id="boat-moon-scene" class="pt-2 transition-all duration-1000" style="opacity: 0.9;">
+            <svg viewBox="0 0 280 96" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Crescent Moon -->
+              <path d="M 226 14 A 11 11 0 1 0 238 28 A 8.5 8.5 0 1 1 226 14 Z" stroke="var(--accent-vermilion)" stroke-width="1" />
+              <!-- Sparse Starlight -->
+              <circle cx="52" cy="18" r="1" fill="var(--ink-mut)" />
+              <circle cx="114" cy="12" r="1.2" fill="var(--accent-vermilion)" />
+              <circle cx="168" cy="24" r="1" fill="var(--ink-mut)" />
+              <circle cx="196" cy="14" r="0.9" fill="var(--ink-mut)" />
+              <!-- Drifting Wooden Skiff -->
+              <path d="M 74 58 Q 112 69 152 56 L 144 63 Q 112 72 80 63 Z" stroke="var(--ink)" stroke-width="1.1" />
+              <line x1="126" y1="59" x2="148" y2="73" stroke="var(--ink)" stroke-width="0.9" />
+              <!-- Water Ripples & Reflected Starlight -->
+              <line x1="24" y1="68" x2="256" y2="68" stroke="var(--rule-strong)" stroke-width="0.8" />
+              <line x1="56" y1="77" x2="178" y2="77" stroke="var(--rule-strong)" stroke-width="0.7" stroke-dasharray="4 6" />
+              <line x1="92" y1="86" x2="232" y2="86" stroke="var(--rule-strong)" stroke-width="0.7" stroke-dasharray="2 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Right 8 Cols: Volunteer Story, Tote Plate & Interactive Starry Night Canvas -->
+        <div class="lg:col-span-8 space-y-6 emerge-item">
+          <div class="tilt-stage">
+            <article class="tilt-card bg-sheet border rule p-6 sm:p-8 space-y-4" data-cursor="card" data-cursor-label="FOLIO 3D">
+              <div class="flex items-center justify-between font-mono text-[10px] text-mut border-b rule pb-2.5">
+                <span>FOLIO 05 · TOTE BAG & STARLIGHT</span>
+                <span>90 MINUTES</span>
+              </div>
+              <div class="space-y-4 font-serifZh text-[15px] sm:text-base leading-[1.95]">
+                <p>志愿相伴的那个孩子，在布袋上画《星月夜》。落笔时他慌了，怕画不完漫天星辰。</p>
+                <p>我说，先点亮夜空第一颗星，再牵起盘旋翻涌的长线。不必强求梵高的热烈，那只袋子，连同他眼里的星光，我好好留到今天。</p>
+              </div>
+              <div class="space-y-3 font-serifEn italic text-sec text-base leading-[1.75] pt-3 border-t rule lang-en">
+                <p>The child I kept company with as a volunteer was painting The Starry Night on a tote bag. At the first stroke he panicked, afraid he could never finish a sky full of stars.</p>
+                <p>I said: light the first star into the night sky first, then take up the long, swirling, churning line. No need to force Van Gogh's intensity — that bag, together with the starlight in his eyes, I have kept carefully to this day.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            <!-- Tote Bag Photo Plate -->
+            <figure class="specimen-frame border rule bg-sheet overflow-hidden cursor-pointer flex flex-col justify-between" data-cursor="view" data-cursor-label="PLATE" onclick="openLightbox('starry-night.jpg', 'PLATE 05 · THE STARRY NIGHT', '《星月夜》画作 / The Starry Night painting')">
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="starry-night.jpg" alt="《星月夜》画作" class="w-full h-full object-cover" onerror="handleMissingPhoto(this, 'PLATE 05', '《星月夜》画作', 'starry-night.jpg')">
+              </div>
+              <figcaption class="px-4 py-2.5 border-t rule flex items-center justify-between font-mono text-[10px] text-sec">
+                <span>《星月夜》画作</span>
+                <span class="text-mut">PLATE 05</span>
+              </figcaption>
+            </figure>
+
+            <!-- Interactive Starry Night Constellation Sketch -->
+            <div class="bg-sheet border rule p-5 flex flex-col justify-between gap-4" data-cursor="view" data-cursor-label="STAR">
+              <div class="flex items-center justify-between font-mono text-[10px] text-mut">
+                <span>STARRY TOTE · 点亮星辰</span>
+                <span id="star-progress">0 / 5 STARS</span>
+              </div>
+
+              <svg id="starry-svg" viewBox="0 0 260 150" class="w-full h-36 border rule bg-tint/40">
+                <defs>
+                  <filter id="star-glow-blur" x="-150%" y="-150%" width="400%" height="400%">
+                    <feGaussianBlur stdDeviation="3" />
+                  </filter>
+                </defs>
+                <!-- Swirling Van Gogh Line (draws when all 5 stars lit) -->
+                <path id="starry-swirl"
+                  d="M 22 112 C 62 42, 118 128, 152 68 C 176 28, 212 96, 240 46"
+                  fill="none"
+                  stroke="var(--accent-vermilion)"
+                  stroke-width="1.2"
+                  stroke-dasharray="320"
+                  stroke-dashoffset="320"
+                  style="transition: stroke-dashoffset 1.6s var(--ease-silk);" />
+
+                <!-- 5 Clickable Stars -->
+                <g class="star-node cursor-pointer" onclick="lightStarNode(0, this)" transform="translate(36, 96)">
+                  <circle r="12" fill="transparent" />
+                  <circle r="3" fill="none" stroke="currentColor" stroke-width="1" />
+                </g>
+                <g class="star-node cursor-pointer" onclick="lightStarNode(1, this)" transform="translate(86, 54)">
+                  <circle r="12" fill="transparent" />
+                  <circle r="3" fill="none" stroke="currentColor" stroke-width="1" />
+                </g>
+                <g class="star-node cursor-pointer" onclick="lightStarNode(2, this)" transform="translate(144, 78)">
+                  <circle r="12" fill="transparent" />
+                  <circle r="3" fill="none" stroke="currentColor" stroke-width="1" />
+                </g>
+                <g class="star-node cursor-pointer" onclick="lightStarNode(3, this)" transform="translate(194, 46)">
+                  <circle r="12" fill="transparent" />
+                  <circle r="3" fill="none" stroke="currentColor" stroke-width="1" />
+                </g>
+                <g class="star-node cursor-pointer" onclick="lightStarNode(4, this)" transform="translate(234, 62)">
+                  <circle r="12" fill="transparent" />
+                  <circle r="3" fill="none" stroke="currentColor" stroke-width="1" />
+                </g>
+              </svg>
+
+              <p id="starry-caption" class="font-serifZh text-xs text-sec">依次轻点 5 个星位，先点亮夜空第一颗星。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         06 — 声音 / SOUND
+    ======================================================================== -->
+    <section id="sec-07" class="py-16 sm:py-24 border-b rule reveal-block">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 mb-10 emerge-item">
+        <div class="font-mono text-xs tracking-widest accent-red">07 — 零碎 / ODDS AND ENDS</div>
+        <div class="font-mono text-[11px] text-mut">FRAGMENTS & HABITS</div>
+      </div>
+
+      <div class="mb-10 emerge-item">
+        <h2 class="lang-zh font-serifZh text-2xl sm:text-4xl font-normal">
+          <span class="type-line" data-text="几件"></span><span class="whitespace-nowrap"><span class="type-line" data-text="小事"></span><span class="type-cursor"></span></span>
+        </h2>
+        <p class="lang-en font-serifEn italic text-xl sm:text-2xl text-sec mt-1">
+          A few small things.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 emerge-item">
+        <!-- 07.1 Poetry Revision Toggle -->
+        <div class="bg-sheet border rule p-6 flex flex-col justify-between gap-4">
+          <div class="flex items-center justify-between font-mono text-[10px] text-mut">
+            <span>07.1 · POETRY</span>
+            <button onclick="togglePoemRevision()" id="poem-rev-btn" class="px-2 py-0.5 border rule hover:border-[var(--ink)]">查看删改痕迹</button>
+          </div>
+          <div class="space-y-2">
+            <p class="lang-zh font-serifZh text-base leading-relaxed">写诗，也改诗。<strong>改比写难。</strong></p>
+            <p class="lang-en font-serifEn italic text-base text-sec">I write poems and revise them. <strong class="font-normal text-[var(--ink)]">Revising is harder.</strong></p>
+            <div id="poem-rev-box" class="hidden pt-3 mt-3 border-t rule font-serifZh text-xs text-sec space-y-1">
+              <div>初稿：<span class="poem-strike">云里的微尘各自飘散，彼此无关</span></div>
+              <div class="accent-red">定稿：那些云里的微尘，各自波动，暗里自有一线牵。</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07.2 Half-Beat-Late Left-Hand Piano -->
+        <div class="bg-sheet border rule p-6 flex flex-col justify-between gap-4" data-cursor="sound" data-cursor-label="PIANO">
+          <div class="flex items-center justify-between font-mono text-[10px] text-mut">
+            <span>07.2 · SELF-TAUGHT PIANO</span>
+            <span class="accent-red">LEFT +180MS LATE</span>
+          </div>
+          <div class="space-y-1">
+            <p class="lang-zh font-serifZh text-base leading-relaxed">钢琴自学。<strong>弹得不好，一直在弹。</strong>左手总慢半拍。</p>
+            <p class="lang-en font-serifEn italic text-base text-sec">Self-taught piano. <strong class="font-normal text-[var(--ink)]">Not good, still playing.</strong> Left hand always half a beat late.</p>
+          </div>
+          <div class="grid grid-cols-5 gap-1 pt-2">
+            <button onclick="playPianoKey(261.63, true, this)" class="piano-key border rule py-3 font-mono text-[10px] bg-tint">L·C4</button>
+            <button onclick="playPianoKey(293.66, true, this)" class="piano-key border rule py-3 font-mono text-[10px] bg-tint">L·D4</button>
+            <button onclick="playPianoKey(329.63, false, this)" class="piano-key border rule py-3 font-mono text-[10px]">R·E4</button>
+            <button onclick="playPianoKey(392.00, false, this)" class="piano-key border rule py-3 font-mono text-[10px]">R·G4</button>
+            <button onclick="playPianoKey(440.00, false, this)" class="piano-key border rule py-3 font-mono text-[10px]">R·A4</button>
+          </div>
+        </div>
+
+        <!-- 07.3 Badminton vs Basketball -->
+        <div class="bg-sheet border rule p-6 flex flex-col justify-between gap-4">
+          <div class="font-mono text-[10px] text-mut">07.3 · COURT & GRUDGE</div>
+          <div class="space-y-2">
+            <p class="lang-zh font-serifZh text-base leading-relaxed">输球要不高兴一整晚。<strong>这个改不了。</strong>羽毛球最认真，篮球最菜。</p>
+            <p class="lang-en font-serifEn italic text-base text-sec">Losing takes a whole night to stop stinging. <strong class="font-normal text-[var(--ink)]">That won't change.</strong> Serious about badminton, worst at basketball.</p>
+          </div>
+        </div>
+
+        <!-- 07.4 Anime -->
+        <div class="bg-sheet border rule p-6 flex flex-col justify-between gap-4">
+          <div class="font-mono text-[10px] text-mut">07.4 · SCREEN & TEARS</div>
+          <div class="space-y-2">
+            <p class="lang-zh font-serifZh text-base leading-relaxed">看动漫会哭。<strong>别问。</strong></p>
+            <p class="lang-en font-serifEn italic text-base text-sec">Anime makes me cry. <strong class="font-normal text-[var(--ink)]">Don't ask.</strong></p>
+          </div>
+        </div>
+
+        <!-- 07.5 Traditional Culture Club -->
+        <div class="bg-sheet border rule p-6 flex flex-col justify-between gap-4">
+          <div class="font-mono text-[10px] text-mut">07.5 · VICE-HEAD</div>
+          <div class="space-y-2">
+            <p class="lang-zh font-serifZh text-base leading-relaxed">传统文化社副社长。干得最多的是<strong>挨个问：你来不来。</strong></p>
+            <p class="lang-en font-serifEn italic text-base text-sec">Vice-head of the traditional culture club. The main job: <strong class="font-normal text-[var(--ink)]">asking people one at a time, are you coming.</strong></p>
+          </div>
+        </div>
+
+        <!-- 07.6 Xin Qiji Easter Egg -->
+        <div class="bg-sheet border rule p-6 flex flex-col justify-between gap-4">
+          <div class="flex items-center justify-between font-mono text-[10px] text-mut">
+            <span>07.6 · SONG CI</span>
+            <button onclick="triggerXinQijiChord()" class="accent-red underline underline-offset-4 cursor-pointer">拔剑试听 ♪</button>
+          </div>
+          <div class="space-y-2">
+            <p class="lang-zh font-serifZh text-base leading-relaxed">
+              宋词偏爱<button onclick="triggerXinQijiChord()" class="border-b border-[var(--accent-vermilion)] accent-red font-medium px-0.5 cursor-pointer">辛弃疾</button>。<strong>因为他凶。</strong>
+            </p>
+            <p class="lang-en font-serifEn italic text-base text-sec">Among Song poets, Xin Qiji. <strong class="font-normal text-[var(--ink)]">He's the fierce one.</strong></p>
+            <p id="xin-quote" class="hidden font-serifZh text-xs accent-red pt-2 border-t rule">“醉里挑灯看剑，梦回吹角连营。”</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         08 — 结尾与联络 / CONTACT & GATES
+    ======================================================================== -->
+    <section id="sec-08" class="pt-16 sm:pt-24 reveal-block">
+      <div class="flex flex-wrap items-baseline justify-between gap-4 mb-10 emerge-item">
+        <div class="font-mono text-xs tracking-widest accent-red">08 — 结尾与联络 / CONTACT & GATES</div>
+        <div class="font-mono text-[11px] text-mut">OPEN CHANNEL</div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start mb-16 emerge-item">
+        <div class="lg:col-span-6 space-y-4">
+          <h2 class="lang-zh font-serifZh text-3xl sm:text-5xl font-normal">想聊就来</h2>
+          <p class="lang-en font-serifEn italic text-2xl sm:text-3xl text-sec">If you want to talk, talk</p>
+          <p class="lang-zh font-serifZh text-base text-sec pt-2">猫、江豚、复利，或者一首我还没听过的歌。</p>
+          <p class="lang-en font-serifEn italic text-lg text-sec">Cats, porpoises, compounding, or a song I haven't heard.</p>
+        </div>
+
+        <div class="lg:col-span-6 bg-sheet border rule divide-y rule">
+          <div class="p-5 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div class="font-mono text-[10px] text-mut">EMAIL · 邮箱</div>
+              <a href="mailto:xiongmaojun2027@163.com" class="font-mono text-sm sm:text-base ink-sweep">xiongmaojun2027@163.com</a>
+            </div>
+            <button onclick="copyContactText('xiongmaojun2027@163.com', this)" class="font-mono text-[10px] px-3 py-1.5 border rule hover:border-[var(--ink)]">COPY</button>
+          </div>
+
+          <div class="p-5 flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <div class="font-mono text-[10px] text-mut">PHONE · 电话</div>
+              <a href="tel:+8615919993429" class="font-mono text-sm sm:text-base ink-sweep">+86 159 1999 3429</a>
+            </div>
+            <button onclick="copyContactText('+86 159 1999 3429', this)" class="font-mono text-[10px] px-3 py-1.5 border rule hover:border-[var(--ink)]">COPY</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Site Gates -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 emerge-item">
+        <button onclick="openGateModal('gallery')" class="text-left bg-sheet border rule p-6 hover:border-[var(--ink)] transition-colors space-y-2">
+          <div class="flex items-center justify-between font-mono text-[10px] text-mut">
+            <span>GATE 01</span>
+            <span class="accent-red">OPEN WALL ↗</span>
+          </div>
+          <div class="font-serifZh text-lg">相册 / <span class="font-serifEn italic">Gallery</span></div>
+          <p class="font-serifZh text-xs text-sec leading-relaxed">照片墙 · 猫、湖、星月夜。</p>
+        </button>
+
+        <button onclick="openGateModal('now')" class="text-left bg-sheet border rule p-6 hover:border-[var(--ink)] transition-colors space-y-2">
+          <div class="flex items-center justify-between font-mono text-[10px] text-mut">
+            <span>GATE 02</span>
+            <span class="accent-red">MONTHLY LOG ↗</span>
+          </div>
+          <div class="font-serifZh text-lg">现在 / <span class="font-serifEn italic">Now</span></div>
+          <p class="font-serifZh text-xs text-sec leading-relaxed">最近在干嘛 · 申请季、跑步、练琴。一月一更。</p>
+        </button>
+
+        <a href="#sec-06" class="text-left bg-sheet border rule p-6 hover:border-[var(--ink)] transition-colors space-y-2 block">
+          <div class="flex items-center justify-between font-mono text-[10px] text-mut">
+            <span>GATE 03</span>
+            <span class="accent-red">JUMP ↑</span>
+          </div>
+          <div class="font-serifZh text-lg">声音 / <span class="font-serifEn italic">Sound</span></div>
+          <p class="font-serifZh text-xs text-sec leading-relaxed">回歌单 · 四首在上面，按得动。</p>
+        </a>
+      </div>
+
+      <footer class="pt-8 border-t rule flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[11px] text-mut">
+        <div>熊茂君 · 成都 · 2026 / MaoJun Xiong · Chengdu · 2026</div>
+        <div>KEYS: [1–4] EMOTION · [M] SOUND · [ESC] CLOSE</div>
+      </footer>
+    </section>
+  </main>
+
+  <!-- Unified Editorial Lightbox & Gate Modal -->
+  <div id="editorial-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8" style="background: rgba(15, 16, 18, 0.72);" onclick="if(event.target===this) closeEditorialModal()">
+    <div class="modal-panel w-full max-w-3xl bg-sheet border rule-strong p-6 sm:p-8 max-h-[88vh] overflow-y-auto">
+      <div class="flex items-center justify-between font-mono text-[11px] border-b rule pb-3 mb-6">
+        <span id="modal-kicker" class="accent-red">ARCHIVE</span>
+        <button onclick="closeEditorialModal()" class="px-2.5 py-0.5 border rule hover:border-[var(--ink)]">CLOSE [ESC]</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Turntable BGM Player (bottom-right) -->
+  <div id="turntable" class="fixed bottom-5 right-5 z-[45] select-none">
+    <button id="tt-mini" onclick="setTurntableSize(true)" title="展开唱片机" class="hidden w-14 h-14 p-0 border-0 bg-transparent cursor-pointer">
+      <div class="tt-disc w-full h-full">
+        <div class="tt-label">WH</div>
+      </div>
+    </button>
+    <div id="tt-panel" class="bg-sheet border rule p-4 w-[248px] space-y-3">
+      <div class="flex items-center justify-between font-mono text-[9px] text-mut tracking-widest">
+        <span>NOW SPINNING · 33⅓ RPM</span>
+        <button onclick="setTurntableSize(false)" title="收起为小唱片" class="hover:text-[var(--ink)] cursor-pointer px-1">[–]</button>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="relative w-20 h-20 shrink-0 cursor-pointer" onclick="toggleTurntable()" data-cursor="sound" data-cursor-label="PLAY">
+          <div class="tt-disc w-full h-full">
+            <div class="tt-label">WH</div>
+          </div>
+          <div class="tt-arm"></div>
+        </div>
+        <div class="min-w-0 flex-1 space-y-1.5">
+          <div class="font-serifEn italic text-base leading-tight truncate">Whatever Happens</div>
+          <div id="tt-status" class="font-mono text-[9px] text-mut tracking-wider">AUTO · LOW VOLUME</div>
+          <button id="tt-toggle" onclick="toggleTurntable()" class="font-mono text-[10px] px-2.5 py-1 border rule hover:border-[var(--ink)] cursor-pointer">暂停 ■</button>
+        </div>
+      </div>
+      <div class="pt-2.5 border-t rule space-y-2.5">
+        <div class="flex items-center gap-2">
+          <span id="tt-cur" class="font-mono text-[9px] text-mut tabular-nums w-8">0:00</span>
+          <input id="tt-seek" type="range" min="0" max="1000" value="0" class="arch-slider flex-1" oninput="seekTurntable(this.value)">
+          <span id="tt-dur" class="font-mono text-[9px] text-mut tabular-nums w-8 text-right">–:––</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="font-mono text-[9px] text-mut w-8">VOL</span>
+          <input id="tt-vol" type="range" min="0" max="100" value="15" class="arch-slider flex-1" oninput="setTurntableVolume(this.value)">
+          <span id="tt-vol-val" class="font-mono text-[9px] text-mut tabular-nums w-8 text-right">15%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <audio id="bgm-audio" src="whatever-happens.mp3" loop preload="auto"></audio>
+
+  <script>
+    // =========================================================================
+    // DATA ARCHIVE
+    // =========================================================================
+    const KEYWORD_NOTES = [
+      {
+        key: '爱动物',
+        enKey: 'animals',
+        zh: '家里两只奶牛猫，July 和苹果。都不是我挑的，是碰上的。',
+        en: 'Two tuxedo cats at home, July and Apple. I did not pick them. We ran into each other.'
+      },
+      {
+        key: '夜猫子',
+        enKey: 'night owl',
+        zh: '两点。猫先睡着，我还在。这事改不了。',
+        en: 'Two in the morning. The cats are asleep first. I am still up. It is not changing.'
+      },
+      {
+        key: '会算账',
+        enKey: 'math',
+        zh: '猫瘟那年学的。一天一千多，不学不行。',
+        en: 'Learned it the year of the plague. A thousand-odd a day. You learn fast.'
+      },
+      {
+        key: '听歌很杂',
+        enKey: 'playlists',
+        zh: '碧梨和粤语老歌在一个歌单里。不打架。',
+        en: 'Billie and Cantonese old songs in one playlist. They do not fight.'
+      },
+      {
+        key: '跑步',
+        enKey: 'running',
+        zh: '跑步的时候不听词。想事情用的。',
+        en: 'No lyrics when I run. That is thinking time.'
+      }
+    ];
+
+    const CAT_PROFILES = {
+      july: {
+        name: 'JULY · 奶牛猫',
+        tag: '夜猫子搭档',
+        zh: '不是我挑的，是碰上的。每天凌晨两点前总是先睡着。',
+        en: 'Not picked, encountered. Always asleep before 2 a.m.'
+      },
+      apple: {
+        name: '苹果 · APPLE',
+        tag: '留下来的小生命',
+        zh: '疫病掠去后腿气力，幸而留住性命，让我懂得积蓄的意义。',
+        en: 'Illness took the strength of her back legs yet spared her life, teaching me what saving means.'
+      }
+    };
+
+    const TRACKS = [
+      {
+        id: '1355147933',
+        title: 'bad guy',
+        artist: 'Billie Eilish',
+        tag: '凌晨那首 / the 2 a.m. one',
+        genre: 'BILLIE / 02:00 AM',
+        moodZh: '最爱的。凌晨听她，房间的灯一格一格调暗。',
+        moodEn: 'The favourite. Billie at two in the morning: the room lights come down one notch at a time.'
+      },
+      {
+        id: '31384233',
+        title: 'Uptown Funk',
+        artist: 'Mark Ronson / Bruno Mars',
+        tag: '走路踩点 / walk on the beat',
+        genre: 'FUNK / SINCE 2018',
+        moodZh: '2018 年就在听了，比大多数人早。走路会自己踩上拍子。',
+        moodEn: 'Since 2018, earlier than most. My feet keep time without asking.'
+      },
+      {
+        id: '65766',
+        title: '富士山下',
+        artist: '陈奕迅',
+        tag: '下雨天 / for the rain',
+        genre: 'HK CLASSICS / RAIN',
+        moodZh: '下雨天只听旧的。港台那批老歌，我爸妈那辈的，我捡起来听。',
+        moodEn: 'Rain means the old stuff. Those Hong Kong classics from my parents generation, I picked them up.'
+      },
+      {
+        id: '186016',
+        title: '晴天',
+        artist: '周杰伦',
+        tag: '想家那首 / for missing home',
+        genre: 'MANDOPOP / HOME & WRITING',
+        moodZh: '林俊杰、华晨宇、邓紫棋、周杰伦。想家的时候听，写东西的时候也听。',
+        moodEn: 'JJ Lin, Hua Chenyu, G.E.M., Jay Chou. For missing home, and for writing.'
+      }
+    ];
+
+    const GALLERY_ITEMS = [
+      { src: 'mother.webp', code: 'PLATE 02-A', title: '猫妈妈 · 2024.07' },
+      { src: 'family.jpg', code: 'PLATE 02-B', title: '母女在一起 · 2026.11' },
+      { src: 'dongting.jpg', code: 'PLATE 03-A', title: '洞庭湖的水面' },
+      { src: 'drone.jpg', code: 'PLATE 03-B', title: '我们自己装的无人机' },
+      { src: 'starry-night.jpg', code: 'PLATE 05', title: '《星月夜》画作' }
+    ];
+
+    const HERO_AXES = [
+      'July 和苹果先睡着，我还在。',
+      '每周五零钱悄悄扣去一点，雪球越积越厚。',
+      '碧梨和粤语老歌在一个歌单里，不打架。'
+    ];
+
+    // =========================================================================
+    // 0. TURNTABLE BGM — WHATEVER HAPPENS
+    // =========================================================================
+    let ttUserPaused = false;
+
+    function ttSync() {
+      const bgm = document.getElementById('bgm-audio');
+      const playing = !bgm.paused;
+      document.getElementById('turntable').classList.toggle('is-playing', playing);
+      document.getElementById('tt-toggle').textContent = playing ? '暂停 ■' : '播放 ▶';
+      document.getElementById('tt-status').textContent = playing
+        ? (bgm.muted ? '静音旋转 · 轻触页面开声 ♪' : 'SPINNING · SIDE A')
+        : 'PAUSED · 已停针';
+    }
+
+    function toggleTurntable() {
+      const bgm = document.getElementById('bgm-audio');
+      if (bgm.paused) {
+        ttUserPaused = false;
+        bgm.muted = false;
+        bgm.play().catch(() => {});
+      } else {
+        ttUserPaused = true;
+        bgm.pause();
+      }
+    }
+
+    function setTurntableVolume(v) {
+      const bgm = document.getElementById('bgm-audio');
+      bgm.muted = false;
+      bgm.volume = v / 100;
+      document.getElementById('tt-vol-val').textContent = `${v}%`;
+    }
+
+    let ttSeeking = false;
+    function ttFmtTime(s) {
+      const m = Math.floor(s / 60);
+      const ss = Math.floor(s % 60);
+      return `${m}:${String(ss).padStart(2, '0')}`;
+    }
+    function seekTurntable(v) {
+      const bgm = document.getElementById('bgm-audio');
+      if (bgm.duration) {
+        bgm.currentTime = (v / 1000) * bgm.duration;
+        document.getElementById('tt-cur').textContent = ttFmtTime(bgm.currentTime);
+      }
+    }
+
+    function setTurntableSize(expand) {
+      document.getElementById('tt-panel').classList.toggle('hidden', !expand);
+      document.getElementById('tt-mini').classList.toggle('hidden', expand);
+    }
+
+    function initTurntable() {
+      const bgm = document.getElementById('bgm-audio');
+      bgm.volume = 0.15;
+      bgm.addEventListener('play', ttSync);
+      bgm.addEventListener('pause', ttSync);
+
+      const seek = document.getElementById('tt-seek');
+      seek.addEventListener('pointerdown', () => { ttSeeking = true; });
+      window.addEventListener('pointerup', () => { ttSeeking = false; });
+      bgm.addEventListener('timeupdate', () => {
+        if (!ttSeeking && bgm.duration) seek.value = Math.round((bgm.currentTime / bgm.duration) * 1000);
+        document.getElementById('tt-cur').textContent = ttFmtTime(bgm.currentTime);
+      });
+      const showDur = () => {
+        if (bgm.duration) document.getElementById('tt-dur').textContent = ttFmtTime(bgm.duration);
+      };
+      bgm.addEventListener('loadedmetadata', showDur);
+      showDur();
+
+      if (window.innerWidth < 640) setTurntableSize(false);
+
+      const armGesture = () => {
+        document.getElementById('tt-status').textContent = '轻触页面任意处开启声音 ♪';
+        const start = () => {
+          window.removeEventListener('pointerdown', start);
+          window.removeEventListener('keydown', start);
+          bgm.muted = false;
+          if (!ttUserPaused && bgm.paused) bgm.play().catch(() => {});
+        };
+        window.addEventListener('pointerdown', start);
+        window.addEventListener('keydown', start);
+      };
+
+      // Tier 1: direct audible autoplay. Tier 2: muted autoplay (always allowed),
+      // then unmute immediately — Chrome/Edge/Firefox keep playing with sound.
+      // Tier 3 (Safari re-pauses on unmute): silent spin + first-gesture unmute.
+      bgm.play().then(ttSync).catch(() => {
+        bgm.muted = true;
+        bgm.play().then(() => {
+          bgm.muted = false;
+          setTimeout(() => {
+            if (bgm.paused && !ttUserPaused) {
+              bgm.muted = true;
+              bgm.play().catch(() => {});
+              armGesture();
+            } else {
+              ttSync();
+            }
+          }, 150);
+        }).catch(armGesture);
+      });
+    }
+
+    // =========================================================================
+    // 1. EMOTION DIMMER, BILINGUAL LENS & CHENGDU CLOCK
+    // =========================================================================
+    let currentLamp = 1;
+    function setLampLevel(level) {
+      currentLamp = level;
+      document.documentElement.setAttribute('data-lamp', String(level));
+      document.querySelectorAll('.lamp-btn').forEach(btn => {
+        const active = Number(btn.dataset.lampBtn) === level;
+        btn.style.backgroundColor = active ? 'var(--ink)' : 'transparent';
+        btn.style.color = active ? 'var(--bg-paper)' : 'var(--ink-sec)';
+        btn.style.borderColor = active ? 'var(--ink)' : 'var(--rule)';
+      });
+    }
+
+    function setLangMode(mode) {
+      const root = document.documentElement;
+      root.classList.add('is-lang-switching');
+      root.setAttribute('data-lang', mode);
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const active = btn.dataset.langBtn === mode;
+        btn.style.backgroundColor = active ? 'var(--ink)' : 'transparent';
+        btn.style.color = active ? 'var(--bg-paper)' : 'var(--ink-sec)';
+      });
+      setTimeout(() => root.classList.remove('is-lang-switching'), 700);
+    }
+
+    function updateChengduClock() {
+      const now = new Date();
+      const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+      const cdu = new Date(utc + 8 * 3600000);
+      const hh = String(cdu.getHours()).padStart(2, '0');
+      const mm = String(cdu.getMinutes()).padStart(2, '0');
+      const ss = String(cdu.getSeconds()).padStart(2, '0');
+      const el = document.getElementById('chengdu-clock');
+      if (el) el.textContent = `${hh}:${mm}:${ss}`;
+      const flag = document.getElementById('night-owl-flag');
+      if (flag) {
+        if (cdu.getHours() === 2) flag.classList.remove('hidden');
+        else flag.classList.add('hidden');
+      }
+    }
+
+    let clockClicks = 0;
+    let clockResetTimer = null;
+    function handleClockEasterEgg() {
+      clockClicks++;
+      clearTimeout(clockResetTimer);
+      clockResetTimer = setTimeout(() => { clockClicks = 0; }, 1600);
+      if (clockClicks >= 3) {
+        clockClicks = 0;
+        setLampLevel(4);
+        toggleMidnightDrawer(true);
+      }
+    }
+
+    function toggleMidnightDrawer(show) {
+      const drawer = document.getElementById('midnight-drawer');
+      if (!drawer) return;
+      if (show) drawer.classList.add('is-revealed');
+      else drawer.classList.remove('is-revealed');
+    }
+
+    function stampSealPulse(btn) {
+      btn.classList.remove('is-stamped');
+      void btn.offsetWidth;
+      btn.classList.add('is-stamped');
+    }
+
+    function cycleHeroAxis(idx) {
+      document.querySelectorAll('.axis-btn').forEach((btn, i) => {
+        const active = i === idx;
+        btn.style.backgroundColor = active ? 'var(--ink)' : 'transparent';
+        btn.style.color = active ? 'var(--bg-paper)' : 'var(--ink-sec)';
+        btn.style.borderColor = active ? 'var(--ink)' : 'var(--rule)';
+      });
+      const noteEl = document.getElementById('hero-axis-note');
+      if (!noteEl) return;
+      swapTextSmooth('hero-axis-note', () => {
+        noteEl.textContent = HERO_AXES[idx];
+      });
+    }
+
+    function swapTextSmooth(elId, updateFn) {
+      const el = document.getElementById(elId);
+      if (!el) { updateFn(); return; }
+      el.classList.add('is-updating');
+      setTimeout(() => {
+        updateFn();
+        el.classList.remove('is-updating');
+      }, 220);
+    }
+
+    // =========================================================================
+    // 2. HESITANT DRAFTING TYPEWRITER & ORGANIC CHARACTER REVEAL
+    // =========================================================================
+    let epigraphRunId = 0;
+    async function runEpigraphDraft() {
+      const runId = ++epigraphRunId;
+      const zhEl = document.getElementById('epigraph-zh-text');
+      const enEl = document.getElementById('epigraph-en-text');
+      const zhCur = document.getElementById('epigraph-zh-cursor');
+      const enCur = document.getElementById('epigraph-en-cursor');
+      const status = document.getElementById('epigraph-status');
+      if (!zhEl || !enEl) return;
+
+      zhEl.textContent = '';
+      enEl.textContent = '';
+      zhCur.classList.add('is-active');
+      enCur.classList.remove('is-active');
+      status.textContent = 'DRAFTING...';
+
+      const sleep = ms => new Promise(r => setTimeout(r, ms));
+      const typeInto = async (el, str, speed = 68) => {
+        for (const ch of str) {
+          if (runId !== epigraphRunId) return false;
+          el.textContent += ch;
+          await sleep(speed + Math.random() * 35);
+        }
+        return true;
+      };
+      const backspace = async (el, count, speed = 42) => {
+        for (let i = 0; i < count; i++) {
+          if (runId !== epigraphRunId) return false;
+          el.textContent = el.textContent.slice(0, -1);
+          await sleep(speed);
+        }
+        return true;
+      };
+
+      if (!(await typeInto(zhEl, '神秘，随性。有时候连我自己都猜不透', 75))) return;
+      await sleep(420);
+      if (!(await backspace(zhEl, 3, 50))) return;
+      await sleep(220);
+      if (!(await typeInto(zhEl, '看不透我自己。', 80))) return;
+
+      zhCur.classList.remove('is-active');
+      enCur.classList.add('is-active');
+      await sleep(260);
+
+      if (!(await typeInto(enEl, "Mysterious, and loose with things. Sometimes I can't even read", 34))) return;
+      await sleep(360);
+      if (!(await backspace(enEl, 9, 28))) return;
+      await sleep(180);
+      if (!(await typeInto(enEl, 'read myself either.', 38))) return;
+
+      enCur.classList.remove('is-active');
+      status.textContent = 'SETTLED';
+    }
+
+    function replayEpigraphDraft() {
+      runEpigraphDraft();
+    }
+
+    function prepareTypeLines() {
+      document.querySelectorAll('.type-line').forEach(el => {
+        const text = el.dataset.text || '';
+        el.innerHTML = '';
+        for (const ch of text) {
+          const span = document.createElement('span');
+          span.className = 'type-char';
+          span.textContent = ch;
+          el.appendChild(span);
+        }
+      });
+    }
+
+    function playTypeLinesInSection(sec) {
+      if (!sec || sec.dataset.typedDone === '1') return;
+      sec.dataset.typedDone = '1';
+
+      const lines = sec.querySelectorAll('.type-line');
+      let delay = 220;
+      lines.forEach(line => {
+        const chars = line.querySelectorAll('.type-char');
+        chars.forEach(ch => {
+          setTimeout(() => {
+            ch.classList.add('is-typed');
+          }, delay);
+          const isPunct = /[，。、；！？,.]/.test(ch.textContent);
+          delay += isPunct ? 180 : 48;
+        });
+      });
+
+      // If Section 01, ignite "花火" at the exact moment typing lands on it
+      if (sec.id === 'sec-01') {
+        const fw = document.getElementById('firework-target');
+        const fwChars = fw ? fw.querySelectorAll('.type-char') : [];
+        const burstDelay = Math.max(450, delay - 120);
+        setTimeout(() => {
+          if (fw) fw.classList.add('is-ignited');
+          fwChars.forEach(c => c.classList.add('is-typed'));
+          burstSparksFromElement(fw);
+          igniteFirework();
+        }, burstDelay);
+      }
+    }
+
+    // Tang Poem Vertical Typewriter + Automatic Night Starlight Shift + Boat & Moon
+    let tangPoemTimer = null;
+    function playTangPoem(force = false) {
+      const l1 = document.getElementById('tang-poem-l1');
+      const l2 = document.getElementById('tang-poem-l2');
+      const author = document.getElementById('tang-poem-author');
+      const scene = document.getElementById('boat-moon-scene');
+      const sec05 = document.getElementById('sec-05');
+      if (!l1 || !l2) return;
+      if (!force && sec05.dataset.poemPlayed === '1') return;
+      sec05.dataset.poemPlayed = '1';
+
+      clearTimeout(tangPoemTimer);
+      l1.innerHTML = '';
+      l2.innerHTML = '';
+      if (author) author.style.opacity = '0';
+      if (scene) {
+        scene.style.opacity = '0';
+        scene.style.transform = 'translateY(8px)';
+      }
+
+      const line1 = '醉后不知天在水，';
+      const line2 = '满船清梦压星河。';
+      const allChars = [
+        ...line1.split('').map(c => ({ target: l1, ch: c })),
+        ...line2.split('').map(c => ({ target: l2, ch: c }))
+      ];
+
+      allChars.forEach((item, idx) => {
+        setTimeout(() => {
+          const span = document.createElement('span');
+          span.className = 'type-char is-typed';
+          span.textContent = item.ch;
+          item.target.appendChild(span);
+
+          if (idx === allChars.length - 1) {
+            if (author) author.style.opacity = '1';
+            if (scene) {
+              scene.style.opacity = '1';
+              scene.style.transform = 'translateY(0)';
+            }
+            // Shift default light themes (1 or 2) into deep starlight night (3)
+            if (currentLamp === 1 || currentLamp === 2) {
+              setLampLevel(3);
+            }
+          }
+        }, 160 + idx * 115);
+      });
+    }
+
+    function replayTangPoem() {
+      playTangPoem(true);
+    }
+
+    // =========================================================================
+    // 3. FIREWORK INK CANVAS & TEXT-BURST SPARKS
+    // =========================================================================
+    let sparks = [];
+    let fireworkCount = 0;
+
+    function burstSparksFromElement(el) {
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      for (let i = 0; i < 16; i++) {
+        const angle = (Math.PI * 2 * i) / 16 + (Math.random() - 0.5) * 0.25;
+        const dist = 28 + Math.random() * 44;
+        const spark = document.createElement('div');
+        spark.className = 'text-burst-spark';
+        spark.style.left = `${cx}px`;
+        spark.style.top = `${cy}px`;
+        spark.style.setProperty('--dx', `${Math.cos(angle) * dist}px`);
+        spark.style.setProperty('--dy', `${Math.sin(angle) * dist}px`);
+        spark.style.transform = `rotate(${(angle * 180) / Math.PI + 90}deg)`;
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 900);
+      }
+    }
+
+    function igniteFirework(x, y) {
+      const canvas = document.getElementById('firework-canvas');
+      if (!canvas) return;
+      const cx = x !== undefined ? x : canvas.width * (0.28 + Math.random() * 0.44);
+      const cy = y !== undefined ? y : canvas.height * (0.28 + Math.random() * 0.4);
+
+      fireworkCount++;
+      const countEl = document.getElementById('firework-count');
+      if (countEl) countEl.textContent = `SPARKS: ${fireworkCount}`;
+
+      const hint = document.getElementById('firework-hint');
+      if (hint) hint.style.opacity = '0';
+
+      const rays = 24;
+      for (let i = 0; i < rays; i++) {
+        const angle = (Math.PI * 2 * i) / rays + (Math.random() - 0.5) * 0.14;
+        const speed = 1.2 + Math.random() * 2.2;
+        sparks.push({
+          x: cx,
+          y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1,
+          decay: 0.014 + Math.random() * 0.01,
+          isRed: i % 3 === 0,
+          secondary: true
+        });
+      }
+    }
+
+    function initFireworkCanvas() {
+      const canvas = document.getElementById('firework-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      const resize = () => {
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+      };
+      resize();
+      window.addEventListener('resize', resize);
+
+      canvas.addEventListener('click', e => {
+        const rect = canvas.getBoundingClientRect();
+        igniteFirework(e.clientX - rect.left, e.clientY - rect.top);
+      });
+
+      const loop = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const inkColor = getComputedStyle(document.documentElement).getPropertyValue('--ink').trim() || '#141413';
+        const redColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-vermilion').trim() || '#B83A2D';
+
+        for (let i = sparks.length - 1; i >= 0; i--) {
+          const s = sparks[i];
+          const px = s.x;
+          const py = s.y;
+          s.x += s.vx;
+          s.y += s.vy;
+          s.vx *= 0.965;
+          s.vy = s.vy * 0.965 + 0.025;
+          s.life -= s.decay;
+
+          if (s.secondary && s.life < 0.48 && Math.random() < 0.08) {
+            s.secondary = false;
+            for (let j = 0; j < 4; j++) {
+              const a = Math.random() * Math.PI * 2;
+              sparks.push({
+                x: s.x,
+                y: s.y,
+                vx: Math.cos(a) * 0.9,
+                vy: Math.sin(a) * 0.9,
+                life: 0.55,
+                decay: 0.024,
+                isRed: true,
+                secondary: false
+              });
+            }
+          }
+
+          if (s.life <= 0) {
+            sparks.splice(i, 1);
+            continue;
+          }
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, s.life);
+          ctx.strokeStyle = s.isRed ? redColor : inkColor;
+          ctx.lineWidth = s.isRed ? 1.2 : 0.85;
+          ctx.beginPath();
+          ctx.moveTo(px, py);
+          ctx.lineTo(s.x, s.y);
+          ctx.stroke();
+          ctx.restore();
+        }
+        requestAnimationFrame(loop);
+      };
+      loop();
+    }
+
+    // =========================================================================
+    // 4. KEYWORD TABS, RUNNING METRONOME, CAT PROFILES, PORPOISE & DRONE
+    // =========================================================================
+    function renderKeywordTabs() {
+      const container = document.getElementById('keyword-tabs');
+      if (!container) return;
+      container.innerHTML = KEYWORD_NOTES.map((item, idx) => `
+        <button onclick="selectKeyword(${idx})" data-kw-idx="${idx}" class="kw-btn px-3 py-1.5 border rule font-mono text-[11px] transition-colors">
+          ${item.key} <span class="opacity-60">/ ${item.enKey}</span>
+        </button>
+      `).join('');
+      selectKeyword(0, false);
+    }
+
+    function selectKeyword(idx, animate = true) {
+      const item = KEYWORD_NOTES[idx];
+      document.querySelectorAll('.kw-btn').forEach(btn => {
+        const active = Number(btn.dataset.kwIdx) === idx;
+        btn.style.backgroundColor = active ? 'var(--ink)' : 'transparent';
+        btn.style.color = active ? 'var(--bg-paper)' : 'var(--ink)';
+        btn.style.borderColor = active ? 'var(--ink)' : 'var(--rule)';
+      });
+      const apply = () => {
+        document.getElementById('kw-title').textContent = `0${idx + 1} · ${item.key} / ${item.enKey}`;
+        document.getElementById('kw-zh').textContent = item.zh;
+        document.getElementById('kw-en').textContent = item.en;
+      };
+      if (animate) swapTextSmooth('keyword-note-panel', apply);
+      else apply();
+    }
+
+    function selectCatProfile(key, animate = true) {
+      const data = CAT_PROFILES[key];
+      const saving = document.getElementById('folio-saving');
+      if (saving) saving.classList.toggle('folio-hidden', key !== 'apple');
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        const active = btn.dataset.catBtn === key;
+        btn.style.backgroundColor = active ? 'var(--ink)' : 'transparent';
+        btn.style.color = active ? 'var(--bg-paper)' : 'var(--ink-sec)';
+        btn.style.borderColor = active ? 'var(--ink)' : 'var(--rule)';
+      });
+      const apply = () => {
+        document.getElementById('cat-name').textContent = data.name;
+        document.getElementById('cat-tag').textContent = data.tag;
+        document.getElementById('cat-zh').textContent = data.zh;
+        document.getElementById('cat-en').textContent = data.en;
+      };
+      if (animate) swapTextSmooth('cat-profile-body', apply);
+      else apply();
+    }
+
+    // Web Audio Helper
+    let audioCtx = null;
+    function getAudioCtx() {
+      if (!audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) audioCtx = new Ctx();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      return audioCtx;
+    }
+
+    function triggerPorpoiseBreath() {
+      const bars = document.querySelectorAll('#porpoise-wave span');
+      const status = document.getElementById('porpoise-status');
+      status.textContent = '浮出水面换气 · 0.8s 呼吸声波在烟波里荡开';
+      status.style.color = 'var(--accent-lake)';
+      bars.forEach((b, i) => {
+        setTimeout(() => {
+          b.style.opacity = '0.95';
+          b.style.backgroundColor = 'var(--accent-lake)';
+          b.style.transform = 'scaleY(1.65)';
+        }, i * 35);
+        setTimeout(() => {
+          b.style.opacity = '0.25';
+          b.style.backgroundColor = 'currentColor';
+          b.style.transform = 'scaleY(1)';
+        }, 520 + i * 35);
+      });
+      setTimeout(() => {
+        status.textContent = '“我却第一次听见江豚的呼吸。”点击感受烟波里的换气声波。';
+        status.style.color = 'var(--ink-sec)';
+      }, 1800);
+
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(190, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(340, ctx.currentTime + 0.25);
+      osc.frequency.exponentialRampToValueAtTime(150, ctx.currentTime + 0.65);
+      gain.gain.setValueAtTime(0.001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.06, ctx.currentTime + 0.2);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.7);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.72);
+    }
+
+    function cyclePhotoStack() {
+      const cards = [...document.querySelectorAll('#photo-stack .stack-card')];
+      cards.forEach(c => {
+        c.classList.toggle('is-front');
+        c.classList.toggle('is-back');
+      });
+      const front = cards.find(c => c.classList.contains('is-front'));
+      const indicator = document.getElementById('stack-indicator');
+      if (front && indicator) indicator.textContent = front.dataset.plate;
+    }
+
+    function updateDroneAltitude(val) {
+      const alt = Number(val);
+      const mode = alt < 30 ? '低掠' : alt <= 75 ? '巡航' : '高瞰';
+      document.getElementById('drone-alt-val').textContent = `${alt} M · ${mode}`;
+      const note = document.getElementById('drone-alt-note');
+      if (alt < 30) note.textContent = `${alt}米高度：贴近水面低飞，怕惊扰它们，小心翼翼保持距离。`;
+      else if (alt <= 75) note.textContent = `${alt}米高度：风声变轻，能看清烟波里忽隐忽现的背鳍，又不至于惊扰它们。`;
+      else note.textContent = `${alt}米高度：高空俯瞰洞庭湖辽阔航道，渔船与烟波尽收眼底。`;
+    }
+
+    // =========================================================================
+    // 5. SNOWBALL LEDGER, STARRY TOTE, MUSIC PLAYER, PIANO & XIN QIJI
+    // =========================================================================
+    function updateSnowballScale(weeksVal) {
+      const weeks = Number(weeksVal);
+      const years = (weeks / 52).toFixed(1);
+      const weeklyDeposit = 50;
+      const principal = weeks * weeklyDeposit;
+      const annualRate = 0.082;
+      const weeklyRate = Math.pow(1 + annualRate, 1 / 52) - 1;
+      const cumulative = Math.round(weeklyDeposit * ((Math.pow(1 + weeklyRate, weeks) - 1) / weeklyRate));
+
+      const labelEl = document.getElementById('snowball-week-label');
+      const cumEl = document.getElementById('snowball-cum');
+      const yrsEl = document.getElementById('snowball-yrs');
+      const prinEl = document.getElementById('snowball-principal');
+
+      if (labelEl) labelEl.textContent = `${weeks} WEEKS (${years} YRS)`;
+      if (cumEl) cumEl.textContent = `¥ ${cumulative.toLocaleString('en-US')}`;
+      if (yrsEl) yrsEl.textContent = `${years} 年`;
+      if (prinEl) prinEl.textContent = `本金 ¥${principal.toLocaleString('en-US')}`;
+
+      const barsEl = document.getElementById('snowball-bars');
+      if (barsEl) {
+        const count = 24;
+        const activeIdx = Math.max(0, Math.min(count - 1, Math.round((weeks / 260) * (count - 1))));
+        barsEl.innerHTML = Array.from({ length: count }, (_, i) => {
+          const h = 10 + Math.round(Math.pow((i + 1) / count, 1.35) * 48);
+          const isCurrent = i === activeIdx;
+          const isPast = i < activeIdx;
+          const bg = isCurrent
+            ? 'var(--accent-vermilion)'
+            : isPast
+              ? 'var(--ink-mut)'
+              : 'var(--rule)';
+          return `<span class="flex-1 transition-all duration-300" style="height:${h}px; background:${bg}; opacity:${isPast ? '0.55' : '1'};"></span>`;
+        }).join('');
+      }
+    }
+
+    const litStars = new Set();
+    function lightStarNode(idx, gEl) {
+      if (litStars.has(idx)) return;
+      litStars.add(idx);
+      const inner = gEl.querySelectorAll('circle')[1];
+      if (inner) inner.style.display = 'none';
+
+      const ns = 'http://www.w3.org/2000/svg';
+      const delay = `${idx * 0.6}s`;
+
+      const halo = document.createElementNS(ns, 'circle');
+      halo.setAttribute('r', '8');
+      halo.setAttribute('fill', '#F2C94C');
+      halo.setAttribute('filter', 'url(#star-glow-blur)');
+      halo.setAttribute('class', 'star-halo');
+      halo.style.animationDelay = delay;
+      gEl.appendChild(halo);
+
+      const core = document.createElementNS(ns, 'path');
+      core.setAttribute('d', 'M 0 -6 L 1.5 -1.5 L 6 0 L 1.5 1.5 L 0 6 L -1.5 1.5 L -6 0 L -1.5 -1.5 Z');
+      core.setAttribute('fill', '#F5D76E');
+      core.setAttribute('class', 'star-core');
+      core.style.animationDelay = delay;
+      gEl.appendChild(core);
+
+      const heart = document.createElementNS(ns, 'circle');
+      heart.setAttribute('r', '1.3');
+      heart.setAttribute('fill', '#FFF6DC');
+      heart.setAttribute('class', 'star-core');
+      heart.style.animationDelay = delay;
+      gEl.appendChild(heart);
+
+      document.getElementById('star-progress').textContent = `${litStars.size} / 5 STARS`;
+      if (litStars.size === 5) {
+        const swirl = document.getElementById('starry-swirl');
+        if (swirl) swirl.style.strokeDashoffset = '0';
+        document.getElementById('starry-caption').textContent = '星辰点亮，隐隐发着光，盘旋翻涌的长线已缓缓牵起。';
+      }
+    }
+
+    function renderTracks() {
+      const grid = document.getElementById('track-grid');
+      if (!grid) return;
+      grid.innerHTML = TRACKS.map((t, i) => `
+        <button onclick="selectTrack(${i})" data-track-idx="${i}" class="track-card text-left bg-sheet border rule p-5 flex items-center justify-between gap-4 transition-colors">
+          <div>
+            <div class="font-mono text-[10px] text-mut mb-1">0${i + 1} · ${t.tag}</div>
+            <div class="font-serifZh text-lg">${t.title} <span class="text-xs text-sec font-normal">— ${t.artist}</span></div>
+          </div>
+          <div class="flex items-end gap-[2px] h-4 w-4 shrink-0" aria-hidden="true">
+            <span class="eq-bar w-1 h-full bg-current" style="animation-delay:0s"></span>
+            <span class="eq-bar w-1 h-full bg-current" style="animation-delay:0.25s"></span>
+            <span class="eq-bar w-1 h-full bg-current" style="animation-delay:0.45s"></span>
+          </div>
+        </button>
+      `).join('');
+      selectTrack(0, false);
+    }
+
+    function selectTrack(idx, autoPlay = true) {
+      const t = TRACKS[idx];
+      document.querySelectorAll('.track-card').forEach((card, i) => {
+        const active = i === idx;
+        card.style.borderColor = active ? 'var(--accent-vermilion)' : 'var(--rule)';
+        card.style.backgroundColor = active ? 'var(--bg-tint)' : 'var(--bg-sheet)';
+      });
+      document.getElementById('now-playing-label').textContent = `NOW SPINNING · ${t.title}`;
+      document.getElementById('now-playing-id').textContent = `ID: ${t.id}`;
+      document.getElementById('netease-iframe').src = `https://music.163.com/outchain/player?type=2&id=${t.id}&auto=${autoPlay ? 1 : 0}&height=66`;
+      document.getElementById('netease-ext-link').href = `https://music.163.com/#/song?id=${t.id}`;
+      document.getElementById('mood-genre-tag').textContent = t.genre;
+
+      const apply = () => {
+        document.getElementById('mood-note-zh').textContent = t.moodZh;
+        document.getElementById('mood-note-en').textContent = t.moodEn;
+      };
+      if (autoPlay) swapTextSmooth('mood-note-box', apply);
+      else apply();
+    }
+
+    function togglePoemRevision() {
+      const box = document.getElementById('poem-rev-box');
+      const btn = document.getElementById('poem-rev-btn');
+      const hidden = box.classList.toggle('hidden');
+      btn.textContent = hidden ? '查看删改痕迹' : '收起删改痕迹';
+    }
+
+    function playPianoKey(freq, isLeftHand, btn) {
+      btn.classList.add('is-pressed');
+      setTimeout(() => btn.classList.remove('is-pressed'), 260);
+      const delayMs = isLeftHand ? 180 : 0; // Left hand half a beat late
+      setTimeout(() => {
+        const ctx = getAudioCtx();
+        if (!ctx) return;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.001, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.11, ctx.currentTime + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.9);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.95);
+      }, delayMs);
+    }
+
+    function triggerXinQijiChord() {
+      const q = document.getElementById('xin-quote');
+      if (q) q.classList.remove('hidden');
+      const ctx = getAudioCtx();
+      if (!ctx) return;
+      [146.83, 220.00].forEach(freq => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.001, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.05, ctx.currentTime + 0.03);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 1.2);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 1.25);
+      });
+    }
+
+    // =========================================================================
+    // 6. LIGHTBOX, MODALS, CLIPBOARD, 3D TILT & ARCHITECTURAL CURSOR
+    // =========================================================================
+    function openLightbox(src, code, caption) {
+      const modal = document.getElementById('editorial-modal');
+      document.getElementById('modal-kicker').textContent = code;
+      document.getElementById('modal-body').innerHTML = `
+        <div class="space-y-4">
+          <div class="aspect-[4/3] bg-tint border rule overflow-hidden">
+            <img src="${src}" alt="${caption}" class="w-full h-full object-contain" onerror="handleMissingPhoto(this, '${code}', '${caption}', '${src}')">
+          </div>
+          <p class="font-serifZh text-base">${caption}</p>
+        </div>
+      `;
+      modal.classList.add('is-open');
+    }
+
+    function openGateModal(type) {
+      const modal = document.getElementById('editorial-modal');
+      if (type === 'gallery') {
+        document.getElementById('modal-kicker').textContent = 'GALLERY · 照片墙';
+        document.getElementById('modal-body').innerHTML = `
+          <div class="space-y-6">
+            <p class="font-serifZh text-sm text-sec">猫、湖、星月夜。</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              ${GALLERY_ITEMS.map(item => `
+                <div class="border rule bg-paper overflow-hidden">
+                  <div class="aspect-[4/3] overflow-hidden">
+                    <img src="${item.src}" alt="${item.title}" class="w-full h-full object-cover" onerror="handleMissingPhoto(this, '${item.code}', '${item.title}', '${item.src}')">
+                  </div>
+                  <div class="px-3 py-2 font-mono text-[10px] flex justify-between">
+                    <span>${item.title}</span>
+                    <span class="text-mut">${item.code}</span>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      } else {
+        document.getElementById('modal-kicker').textContent = 'NOW · 最近在干嘛（一月一更）';
+        document.getElementById('modal-body').innerHTML = `
+          <div class="space-y-4 font-serifZh text-base leading-relaxed">
+            <div class="font-mono text-xs accent-red">2026 · CHENGDU — APPLICATION SEASON</div>
+            <p>一、申请季：把十八岁走过的路、写过的诗与算过的账，整理成一封封安静而笃定的信。</p>
+            <p>二、跑步：依然不听词。在傍晚的风里把思绪理齐整。</p>
+            <p>三、练琴：左手还是慢半拍，但一直在弹。</p>
+          </div>
+        `;
+      }
+      modal.classList.add('is-open');
+    }
+
+    function closeEditorialModal() {
+      document.getElementById('editorial-modal').classList.remove('is-open');
+    }
+
+    function copyContactText(text, btn) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const orig = btn.textContent;
+      btn.textContent = 'COPIED ✓';
+      setTimeout(() => { btn.textContent = orig; }, 1600);
+    }
+
+    function init3DTiltCards() {
+      document.querySelectorAll('.tilt-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width;
+          const y = (e.clientY - rect.top) / rect.height;
+          const rotY = (x - 0.5) * 6;
+          const rotX = (0.5 - y) * 6;
+          card.classList.add('is-tilting');
+          card.style.setProperty('--mx', `${x * 100}%`);
+          card.style.setProperty('--my', `${y * 100}%`);
+          card.style.transform = `rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.classList.remove('is-tilting');
+          card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+        });
+      });
+    }
+
+    function initArchitecturalCursor() {
+      const cursor = document.getElementById('custom-cursor');
+      const dot = document.getElementById('custom-cursor-dot');
+      const tag = document.getElementById('custom-cursor-tag');
+      const telemetry = document.getElementById('cursor-telemetry');
+      if (!cursor || !dot) return;
+
+      let mx = window.innerWidth / 2;
+      let my = window.innerHeight / 2;
+      let cx = mx;
+      let cy = my;
+      let shown = false;
+
+      window.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        dot.style.left = `${mx}px`;
+        dot.style.top = `${my}px`;
+        if (!shown) {
+          shown = true;
+          cursor.style.opacity = '1';
+          dot.style.opacity = '1';
+        }
+        if (telemetry) {
+          telemetry.textContent = `X:${String(Math.round(mx)).padStart(3, '0')} Y:${String(Math.round(my)).padStart(3, '0')}`;
+        }
+
+        const target = e.target.closest('[data-cursor], button, a, input');
+        cursor.className = 'arch-cursor hidden sm:flex';
+        tag.textContent = '';
+
+        if (target) {
+          const mode = target.dataset.cursor;
+          const label = target.dataset.cursorLabel || '';
+          if (mode === 'view') {
+            cursor.classList.add('state-view');
+            tag.textContent = label || 'VIEW';
+          } else if (mode === 'sound') {
+            cursor.classList.add('state-sound');
+            tag.textContent = label || 'SOUND';
+          } else if (mode === 'card') {
+            cursor.classList.add('state-card');
+            tag.textContent = label || 'FOLIO';
+          } else {
+            cursor.classList.add('state-link');
+          }
+        }
+      });
+
+      window.addEventListener('click', e => {
+        const ripple = document.createElement('div');
+        ripple.className = 'click-ink-ripple';
+        ripple.style.left = `${e.clientX}px`;
+        ripple.style.top = `${e.clientY}px`;
+        document.body.appendChild(ripple);
+        setTimeout(() => ripple.remove(), 700);
+      });
+
+      const follow = () => {
+        cx += (mx - cx) * 0.2;
+        cy += (my - cy) * 0.2;
+        cursor.style.left = `${cx}px`;
+        cursor.style.top = `${cy}px`;
+        requestAnimationFrame(follow);
+      };
+      follow();
+    }
+
+    // =========================================================================
+    // 7. SCROLL OBSERVER, READING GAUGE & GLOBAL KEYBOARD SHORTCUTS
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      initTurntable();
+      setLampLevel(1);
+      setLangMode('both');
+      cycleHeroAxis(0);
+      updateChengduClock();
+      setInterval(updateChengduClock, 1000);
+
+      prepareTypeLines();
+      runEpigraphDraft();
+      initFireworkCanvas();
+      renderKeywordTabs();
+      selectCatProfile('july', false);
+      updateSnowballScale(156);
+      renderTracks();
+      init3DTiltCards();
+      initArchitecturalCursor();
+
+      // Reading Gauge
+      window.addEventListener('scroll', () => {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)) : 0;
+        const gauge = document.getElementById('reading-gauge');
+        if (gauge) gauge.style.width = `${pct}%`;
+      }, { passive: true });
+
+      // Staggered Silk Emergence Observer
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const sec = entry.target;
+            sec.classList.add('is-visible');
+            sec.querySelectorAll('.emerge-item').forEach((item, idx) => {
+              item.style.transitionDelay = `${idx * 95}ms`;
+            });
+            playTypeLinesInSection(sec);
+            if (sec.id === 'sec-05') {
+              playTangPoem(false);
+            }
+          }
+        });
+      }, { threshold: 0.14 });
+
+      document.querySelectorAll('.reveal-block').forEach(sec => observer.observe(sec));
+
+      // Global Shortcuts: 1-4 Emotion, M Sound, ESC Modal
+      window.addEventListener('keydown', e => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
+        if (['1', '2', '3', '4'].includes(e.key)) {
+          setLampLevel(Number(e.key));
+        } else if (e.key.toLowerCase() === 'm') {
+          document.getElementById('sec-06')?.scrollIntoView({ behavior: 'smooth' });
+        } else if (e.key === 'Escape') {
+          closeEditorialModal();
+          toggleMidnightDrawer(false);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
