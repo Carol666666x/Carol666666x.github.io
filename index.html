@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <script>
     // Early image fallback handler defined before body parsing to prevent ReferenceError
@@ -135,6 +135,7 @@
     .accent-lake { color: var(--accent-lake); }
 
     .font-serifZh { font-family: 'Noto Serif SC', serif; }
+    .font-seal { font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif; }
     .font-serifEn { font-family: 'Cormorant Garamond', Georgia, serif; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
 
@@ -623,7 +624,7 @@
     }
 
     /* Vertical Classical Poetry Layout */
-    .vertical-poem {
+    .vertical-poem, .vertical-seal {
       writing-mode: vertical-rl;
       text-orientation: upright;
     }
@@ -779,11 +780,12 @@
             </div>
 
             <!-- Interactive Vermilion Seal Stamp -->
-            <button onclick="stampSealPulse(this)" title="点击盖章" class="border border-[var(--accent-vermilion)] px-3.5 py-3 text-center select-none cursor-pointer shrink-0">
-              <div class="font-serifZh text-sm leading-tight tracking-widest accent-red font-medium">
-                熊茂<br>君印
+            <button onclick="stampSealPulse(this)" title="点击盖章" class="ml-auto border-2 border-[var(--accent-vermilion)] px-5 py-4 text-center select-none cursor-pointer shrink-0">
+              <div class="font-seal text-2xl leading-tight tracking-widest accent-red flex flex-row-reverse items-center justify-center gap-1.5">
+                <span class="vertical-seal">熊茂君</span>
+                <span class="vertical-seal">之印</span>
               </div>
-              <div class="font-mono text-[8px] tracking-widest text-mut mt-1.5 pt-1 border-t rule">
+              <div class="font-mono text-[9px] tracking-widest text-mut mt-2 pt-1.5 border-t rule">
                 SEAL·18
               </div>
             </button>
@@ -830,7 +832,6 @@
               <a href="#sec-03" class="ink-sweep">03 洞庭湖</a>
               <a href="#sec-04" class="ink-sweep">04 星期五</a>
               <a href="#sec-05" class="ink-sweep">05 星月夜</a>
-              <a href="#sec-06" class="ink-sweep">06 声音</a>
             </div>
           </div>
         </div>
@@ -1582,7 +1583,7 @@
       </div>
 
       <!-- Site Gates -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 emerge-item">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 emerge-item">
         <button onclick="openGateModal('gallery')" class="text-left bg-sheet border rule p-6 hover:border-[var(--ink)] transition-colors space-y-2">
           <div class="flex items-center justify-between font-mono text-[10px] text-mut">
             <span>GATE 01</span>
@@ -1601,19 +1602,11 @@
           <p class="font-serifZh text-xs text-sec leading-relaxed">最近在干嘛 · 申请季、跑步、练琴。一月一更。</p>
         </button>
 
-        <a href="#sec-06" class="text-left bg-sheet border rule p-6 hover:border-[var(--ink)] transition-colors space-y-2 block">
-          <div class="flex items-center justify-between font-mono text-[10px] text-mut">
-            <span>GATE 03</span>
-            <span class="accent-red">JUMP ↑</span>
-          </div>
-          <div class="font-serifZh text-lg">声音 / <span class="font-serifEn italic">Sound</span></div>
-          <p class="font-serifZh text-xs text-sec leading-relaxed">回歌单 · 四首在上面，按得动。</p>
-        </a>
       </div>
 
       <footer class="pt-8 border-t rule flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[11px] text-mut">
         <div>熊茂君 · 成都 · 2026 / MaoJun Xiong · Chengdu · 2026</div>
-        <div>KEYS: [1–4] EMOTION · [M] SOUND · [ESC] CLOSE</div>
+        <div>KEYS: [1–4] EMOTION · [ESC] CLOSE</div>
       </footer>
     </section>
   </main>
@@ -2775,13 +2768,11 @@
       }, { threshold: Array.from({ length: 21 }, (_, i) => i / 20) });
       poemObserver.observe(poemSec);
 
-      // Global Shortcuts: 1-4 Emotion, M Sound, ESC Modal
+      // Global Shortcuts: 1-4 Emotion, ESC Modal
       window.addEventListener('keydown', e => {
         if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
         if (['1', '2', '3', '4'].includes(e.key)) {
           setLampLevel(Number(e.key));
-        } else if (e.key.toLowerCase() === 'm') {
-          document.getElementById('sec-06')?.scrollIntoView({ behavior: 'smooth' });
         } else if (e.key === 'Escape') {
           closeEditorialModal();
           toggleMidnightDrawer(false);
