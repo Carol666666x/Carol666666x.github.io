@@ -699,6 +699,27 @@
     #editorial-modal.is-open .modal-panel {
       transform: translateY(0) scale(1);
     }
+  
+    /* Local research appendix */
+    .research-appendix{margin:0 0 clamp(2.5rem,6vw,4rem);border-top:1px solid var(--rule);padding-top:clamp(2rem,5vw,3.5rem);scroll-margin-top:6rem}
+    .research-appendix-head{margin-bottom:1.35rem}
+    .research-appendix-kicker{font-family:"JetBrains Mono",monospace;font-size:.72rem;letter-spacing:.075em;color:var(--accent-vermilion)}
+    html[data-lang="both"] .research-appendix-kicker .lang-en{margin-left:.5em}
+    .research-appendix-head h2{margin:.45rem 0 0;font-size:clamp(1.6rem,4vw,2.55rem);font-weight:400;line-height:1.2}
+    .research-appendix-head h2 .lang-en{display:block;font-style:italic;color:var(--ink-sec)}
+    html[data-lang="both"] .research-appendix-head h2 .lang-en{margin-top:.12rem;font-size:.69em}
+    .research-appendix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+    .research-appendix-card{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:.9rem;padding:clamp(1rem,2.6vw,1.7rem);background:var(--bg-sheet);border:1px solid var(--rule)}
+    .research-appendix-card h3{font-size:clamp(1.1rem,2.45vw,1.45rem);margin:0;font-weight:500;line-height:1.35}
+    .research-appendix-card h3.lang-en{font-style:italic}
+    html[data-lang="both"] .research-appendix-card h3.lang-en{font-size:1.05rem;margin-top:.27rem;color:var(--ink-sec)}
+    .research-appendix-card p{margin:.65rem 0 0;color:var(--ink-sec);font-size:.95rem;line-height:1.62}
+    .research-appendix-links{margin-top:auto;padding-top:.65rem;border-top:1px solid var(--rule);width:100%;display:flex;flex-wrap:wrap;gap:.3rem 1rem}
+    .research-appendix-links a{font-size:.9rem;color:var(--ink);text-decoration:underline;text-decoration-color:var(--accent-vermilion);text-underline-offset:.28em}
+    .research-appendix-links a:hover{color:var(--accent-vermilion)}
+    .research-appendix-links a:focus-visible{outline:2px solid var(--accent-vermilion);outline-offset:4px}
+    @media(max-width:680px){.research-appendix-grid{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body class="antialiased selection:bg-[#B83A2D] selection:text-white">
@@ -1603,6 +1624,47 @@
         </button>
 
       </div>
+
+      <!-- PROJECT NOTES — LOCAL RESEARCH PAGES -->
+      <section id="project-research" class="research-appendix" aria-labelledby="project-research-title">
+        <header class="research-appendix-head">
+          <div class="research-appendix-kicker">附录 / PROJECT NOTES</div>
+          <h2 id="project-research-title">
+            <span class="lang-zh font-serifZh" lang="zh-CN">项目研究</span>
+            <span class="lang-en font-serifEn" lang="en">Project studies</span>
+          </h2>
+        </header>
+
+        <div class="research-appendix-grid">
+          <article class="research-appendix-card">
+            <div class="research-appendix-kicker">01 · <span class="lang-zh" lang="zh-CN">香港</span><span class="lang-en" lang="en">HONG KONG</span></div>
+            <div class="research-appendix-copy">
+              <h3 class="lang-zh font-serifZh" lang="zh-CN">在香港做美甲生意，可行吗？</h3>
+              <h3 class="lang-en font-serifEn" lang="en">Could a nail business work near a Hong Kong campus?</h3>
+              <p class="lang-zh font-serifZh" lang="zh-CN">对照五所大学周边的门店报价，按预约时长、耗材和场地成本试算一下午能剩多少钱。</p>
+              <p class="lang-en" lang="en">Compare salon prices near five universities and estimate appointment capacity, supplies and venue costs.</p>
+            </div>
+            <div class="research-appendix-links">
+              <a class="lang-zh font-serifZh" lang="zh-CN" href="./nail/zh.html">查看美甲分析</a>
+              <a class="lang-en" lang="en" href="./nail/index.html">Read the nail business study</a>
+            </div>
+          </article>
+
+          <article class="research-appendix-card">
+            <div class="research-appendix-kicker">02 · <span class="lang-zh" lang="zh-CN">跨境贸易</span><span class="lang-en" lang="en">EXPORT TRADE</span></div>
+            <div class="research-appendix-copy">
+              <h3 class="lang-zh font-serifZh" lang="zh-CN">出口圆珠笔，我会先卖到哪里？</h3>
+              <h3 class="lang-en font-serifEn" lang="en">Where would I sell my pens first?</h3>
+              <p class="lang-zh font-serifZh" lang="zh-CN">对比新加坡和马来西亚的进口数据与零售标价，试算单卖、三支套装和不同发货方式的结余。</p>
+              <p class="lang-en" lang="en">Compare Singapore and Malaysia using imports and retail prices, then model bundles and shipping costs.</p>
+            </div>
+            <div class="research-appendix-links">
+              <a class="lang-zh font-serifZh" lang="zh-CN" href="./pen/index.html">查看出口分析</a>
+              <a class="lang-en" lang="en" href="./pen/index.html" hreflang="zh-CN">Read the export study (Chinese)</a>
+            </div>
+          </article>
+        </div>
+      </section>
 
       <footer class="pt-8 border-t rule flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 font-mono text-[11px] text-mut">
         <div>熊茂君 · 成都 · 2026 / MaoJun Xiong · Chengdu · 2026</div>
